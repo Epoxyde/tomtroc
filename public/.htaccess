@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Laisser Apache servir directement les fichiers et dossiers existants
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Toutes les autres requêtes sont envoyées vers index.php
+RewriteRule ^ index.php [QSA,L]
