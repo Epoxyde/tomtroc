@@ -12,17 +12,30 @@
 
 <body>
 
-<header>
-    <nav>
-        <a href="/">TomTroc</a>
+<header class="header">
+    <div class="header__container">
+        <a class="header__logo" href="/" aria-label="Tom Troc - Accueil">
+            <img src="/images/logo.svg" alt="Tom Troc">
+        </a>
 
-        <a href="/">Accueil</a>
-        <a href="/books">Nos livres à l'échange</a>
+        <nav class="header__nav" aria-label="Navigation principale">
+            <div class="header__nav-main">
+                <a class="header__link" href="/">Accueil</a>
+                <a class="header__link" href="/books">Nos livres à l'échange</a>
+            </div>
 
-        <a href="/messages">Messagerie</a>
-        <a href="/account">Mon compte</a>
-        <a href="/login">Connexion</a>
-    </nav>
+            <div class="header__nav-account">
+                <a class="header__link header__link--icon" href="/messages">
+                    <img src="/images/icon-messagerie.svg" alt="" aria-hidden="true">
+                    <span>Messagerie</span>
+                </a>
+                <a class="header__link" href="/account">Mon compte</a>
+                <a class="header__link" href="/login">Connexion</a>
+            </div>
+        </nav>
+    </div>
 </header>
+
+<main>
 
 <main>
