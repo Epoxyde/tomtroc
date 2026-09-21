@@ -139,7 +139,19 @@ Ils sont compilés dans :
 public/css/main.css
 ```
 
-Les instructions de compilation seront précisées lorsque l'environnement Sass du projet sera mis en place.
+Installer les dépendances avec :
+
+```bash
+npm install
+```
+
+Puis lancer Sass en mode surveillance :
+
+```bash
+npm run sass
+```
+
+Sass recompilera automatiquement les styles lors de chaque modification des fichiers SCSS.
 
 ## Versionnement
 
