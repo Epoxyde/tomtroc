@@ -1,6 +1,12 @@
 <?php
 
 $title = $book['title'];
+$breadcrumb = [
+    'label' => 'Nos livres',
+    'url' => '/books',
+    'current' => $book['title']
+];
+
 require __DIR__ . '/templates/header.php';
 ?>
 
