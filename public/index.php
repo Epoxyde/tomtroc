@@ -17,6 +17,11 @@ switch ($route) {
         $controller->index();
         break;
 
+    case 'book':
+        $controller = new BookController();
+        $controller->show();
+        break;
+
     default:
         http_response_code(404);
         require __DIR__ . '/../src/views/404.php';

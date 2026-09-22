@@ -1,0 +1,229 @@
+@use 'variables' as vars;
+
+.hero {
+    background-color: vars.$color-background;
+
+    &__container {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 90px;
+
+        padding: 90px 0;
+    }
+
+    &__content {
+        width: 330px;
+        padding-top: 15px;
+    }
+
+    &__title {
+        margin-bottom: 20px;
+
+        color: black;
+        font-family: vars.$font-title;
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+    &__text {
+        margin-bottom: 32px;
+
+        color: black;
+        font-family: vars.$font-primary;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    &__visual {
+        margin: 0;
+    }
+
+    &__image {
+        width: 404px;
+        height: 539px;
+        object-fit: cover;
+    }
+
+    &__credit {
+        margin-top: 10px;
+
+        color: vars.$color-text-light;
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 300;
+        font-style: italic;
+        text-align: right;
+    }
+}
+
+.latest-books {
+    background-color: vars.$color-background-light;
+
+    &__container {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 90px 0 65px;
+
+        text-align: center;
+    }
+
+    &__title {
+        margin-bottom: 70px;
+
+        color: vars.$color-text;
+        font-family: vars.$font-title;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 200px);
+        justify-content: center;
+        gap: 38px;
+
+        margin-bottom: 48px;
+    }
+
+    &__button {
+        min-width: 220px;
+    }
+}
+
+.how-it-works {
+    background-color: vars.$color-background;
+
+    &__container {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 80px 0 75px;
+
+        text-align: center;
+    }
+
+    &__title {
+        margin-bottom: 25px;
+
+        color: vars.$color-text;
+        font-family: vars.$font-title;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    &__intro {
+        margin-bottom: 40px;
+
+        color: vars.$color-text;
+        font-family: vars.$font-primary;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    &__steps {
+        display: grid;
+        grid-template-columns: repeat(4, 215px);
+        justify-content: center;
+        gap: 35px;
+
+        margin-bottom: 48px;
+    }
+
+    &__step {
+        height: 140px;
+        padding: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #fff;
+        border-radius: 10px;
+
+        p {
+            max-width: 180px;
+
+            color: vars.$color-text;
+            font-family: vars.$font-primary;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+    }
+}
+
+.values {
+    background-color: vars.$color-background;
+
+        &__banner {
+            display: block;
+            width: 100%;
+            max-width: 1440px;
+            height: 230px;
+            margin: 0 auto;
+            object-fit: cover;
+        }
+
+        &__container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 85px 0 150px;
+        }
+
+        &__content {
+            width: 390px;
+            margin: 0 auto;
+        }
+
+    &__title {
+        margin-bottom: 35px;
+
+        color: vars.$color-text;
+        font-family: vars.$font-title;
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    p {
+        margin-bottom: 20px;
+
+        color: vars.$color-text;
+        font-family: vars.$font-primary;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    &__signature {
+        position: relative;
+        margin-top: 38px;
+    }
+
+    &__signature span {
+        color: vars.$color-text-light;
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    &__heart {
+        position: absolute;
+        width: 120px;
+        top: -15px;
+        right: -75px;
+    }
+}
