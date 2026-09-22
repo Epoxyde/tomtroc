@@ -28,6 +28,11 @@ switch ($route) {
         $controller->register();
         break;
 
+    case 'login':
+        $controller = new AuthController();
+        $controller->login();
+        break;
+
     default:
         http_response_code(404);
         require __DIR__ . '/../src/views/404.php';

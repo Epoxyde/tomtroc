@@ -189,7 +189,7 @@ body {
 .auth-form__group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 .auth-form__group label {
   color: #A6A6A6;
@@ -609,11 +609,12 @@ body {
 }
 .auth-page__inner {
   width: 100%;
-  max-width: 400px;
-  padding: 120px 0 70px;
+  max-width: 330px;
+  padding: 125px 0 70px;
+  margin-left: -75px;
 }
 .auth-page__title {
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   color: #292929;
   font-family: "Playfair Display", serif;
   font-size: 36px;
