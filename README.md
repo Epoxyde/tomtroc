@@ -125,6 +125,17 @@ Le projet utilise une base de données relationnelle MySQL.
 
 La structure de la base de données sera documentée ici au fur et à mesure du développement.
 
+## Comptes de démonstration
+
+Deux comptes utilisateurs sont disponibles après l'import de la base de données :
+
+| Utilisateur | E-mail | Mot de passe |
+| --- | --- | --- |
+| alexlecture | alexlecture@example.com | password |
+| nathalie | nathalie@example.com | password |
+
+Les mots de passe sont stockés de manière sécurisée dans la base de données à l'aide de `password_hash()`.
+
 ## Styles
 
 Les styles du projet sont écrits en SCSS dans le dossier :
