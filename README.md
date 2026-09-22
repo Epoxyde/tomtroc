@@ -133,6 +133,7 @@ Deux comptes utilisateurs sont disponibles après l'import de la base de donnée
 | --- | --- | --- |
 | alexlecture | alexlecture@example.com | password |
 | nathalie | nathalie@example.com | password |
+| Sas634 | sas634@example.com | password |
 
 Les mots de passe sont stockés de manière sécurisée dans la base de données à l'aide de `password_hash()`.
 
