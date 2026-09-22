@@ -1,0 +1,121 @@
+@use 'variables' as vars;
+
+.book-detail {
+    display: flex;
+
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    background-color: vars.$color-background-light;
+
+    &__image-wrapper,
+    &__content {
+        width: 50%;
+    }
+
+    &__image-wrapper {
+        height: 860px;
+        overflow: hidden;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+        object-position: bottom;
+    }
+
+    &__content {
+        display: flex;
+    }
+
+    &__inner {
+        width: 100%;
+        max-width: 570px;
+        padding: 50px 0 60px 80px;
+    }
+
+    &__title {
+        margin: 0 0 14px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-title;
+        font-size: 36px;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    &__author {
+        color: vars.$color-text-light;
+
+        font-family: vars.$font-primary;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    &__separator {
+        width: 27px;
+        height: 1px;
+        margin: 30px 0;
+
+        background-color: vars.$color-text-light;
+    }
+
+    &__label {
+        margin-bottom: 20px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-primary;
+        font-size: 9px;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    &__description {
+        margin-bottom: 30px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-primary;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    &__owner {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+
+        padding: 6px 16px 6px 6px;
+
+        background-color: #fff;
+        border-radius: 30px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 400;
+        text-decoration: none;
+    }
+
+    &__avatar {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__message {
+        display: flex;
+
+        width: 100%;
+        margin-top: 70px;
+    }
+}

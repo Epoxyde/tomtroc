@@ -54,4 +54,23 @@ class BookManager
 
         return $statement->fetchAll();
     }
-}
+
+    public function getBookById(int $id): array|false
+    {
+        $sql = '
+            SELECT
+                books.*,
+                users.username,
+                users.avatar
+            FROM books
+            JOIN users ON users.id = books.user_id
+            WHERE books.id = :id
+        ';
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+    }
