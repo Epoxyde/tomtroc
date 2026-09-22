@@ -28,4 +28,19 @@ class BookManager
 
         return $statement->fetchAll();
     }
+
+    public function getAvailableBooks(): array
+    {
+        $sql = '
+            SELECT books.*, users.username
+            FROM books
+            JOIN users ON users.id = books.user_id
+            WHERE books.available = 1
+            ORDER BY books.id ASC
+        ';
+
+        $statement = $this->db->query($sql);
+
+        return $statement->fetchAll();
+    }
 }
