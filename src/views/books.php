@@ -22,10 +22,11 @@ require __DIR__ . '/templates/header.php';
                 <input
                     type="search"
                     name="search"
+                    value="<?= htmlspecialchars($search) ?>"
                     placeholder="Rechercher un livre"
                     aria-label="Rechercher un livre"
                 >
-            </form>
+        </form>
         </div>
 
         <div class="books-page__grid">

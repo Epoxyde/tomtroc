@@ -29,17 +29,28 @@ class BookManager
         return $statement->fetchAll();
     }
 
-    public function getAvailableBooks(): array
+    public function getAvailableBooks(string $search = ''): array
     {
         $sql = '
             SELECT books.*, users.username
             FROM books
             JOIN users ON users.id = books.user_id
             WHERE books.available = 1
-            ORDER BY books.id ASC
         ';
 
-        $statement = $this->db->query($sql);
+        if ($search !== '') {
+            $sql .= ' AND books.title LIKE :search';
+        }
+
+        $sql .= ' ORDER BY books.id ASC';
+
+        $statement = $this->db->prepare($sql);
+
+        if ($search !== '') {
+            $statement->bindValue(':search', '%' . $search . '%');
+        }
+
+        $statement->execute();
 
         return $statement->fetchAll();
     }
