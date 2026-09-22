@@ -1,0 +1,48 @@
+<?php
+
+require_once __DIR__ . '/Database.php';
+
+class UserManager
+{
+    private PDO $db;
+
+    public function __construct()
+    {
+        $database = new Database();
+        $this->db = $database->getConnection();
+    }
+
+    public function getUserByEmail(string $email): array|false
+    {
+        $sql = '
+            SELECT *
+            FROM users
+            WHERE email = :email
+        ';
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
+
+    public function createUser(
+        string $username,
+        string $email,
+        string $password
+    ): int {
+        $sql = '
+            INSERT INTO users (username, email, password)
+            VALUES (:username, :email, :password)
+        ';
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':password', $password);
+        $statement->execute();
+
+        return (int) $this->db->lastInsertId();
+    }
+}
