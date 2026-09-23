@@ -1,5 +1,5 @@
 <?php
-$title = 'Modifier un livre';
+$title = 'Ajouter un livre';
 require __DIR__ . '/templates/header.php';
 ?>
 
@@ -11,7 +11,7 @@ require __DIR__ . '/templates/header.php';
         </a>
 
         <h1 class="edit-book__title">
-            Modifier les informations
+            Ajouter un livre
         </h1>
 
         <div class="edit-book__content">
@@ -22,13 +22,11 @@ require __DIR__ . '/templates/header.php';
                 <img
                     id="book-image-preview"
                     class="edit-book__image"
-                    src="<?= !empty($book['image'])
-                                ? '/uploads/books/' . htmlspecialchars($book['image'])
-                                : '/images/book-placeholder.png' ?>"
-                    alt="<?= htmlspecialchars($book['title']) ?>">
+                    src="/images/book-placeholder.png"
+                    alt="Aperçu de la photo du livre">
 
                 <label class="edit-book__image-link" for="image">
-                    Modifier la photo
+                    Ajouter une photo
                 </label>
 
                 <input
@@ -37,7 +35,7 @@ require __DIR__ . '/templates/header.php';
                     id="image"
                     name="image"
                     accept="image/jpeg,image/png,image/webp"
-                    form="edit-book-form">
+                    form="add-book-form">
             </div>
 
             <?php if (!empty($error)): ?>
@@ -47,9 +45,9 @@ require __DIR__ . '/templates/header.php';
             <?php endif; ?>
 
             <form
-                id="edit-book-form"
+                id="add-book-form"
                 class="edit-book__form"
-                action="/book/edit?id=<?= (int) $book['id'] ?>"
+                action="/book/add"
                 method="post"
                 enctype="multipart/form-data">
 
@@ -109,7 +107,7 @@ require __DIR__ . '/templates/header.php';
                 </div>
 
                 <button class="button edit-book__submit" type="submit">
-                    Valider
+                    Ajouter le livre
                 </button>
             </form>
 

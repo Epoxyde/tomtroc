@@ -45,6 +45,9 @@ class BookController
         }
 
         $userId = (int) $_SESSION['user_id'];
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
         $bookId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
         // Vérifier que l'identifiant du livre est valide.
@@ -73,6 +76,16 @@ class BookController
 
         // Traiter le formulaire.
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $token = $_POST['csrf_token'] ?? '';
+
+            if (
+                !is_string($token) ||
+                !hash_equals($_SESSION['csrf_token'], $token)
+            ) {
+                http_response_code(403);
+                echo 'Requête non autorisée.';
+                return;
+            }
             $title = trim($_POST['title'] ?? '');
             $author = trim($_POST['author'] ?? '');
             $description = trim($_POST['description'] ?? '');
@@ -241,5 +254,110 @@ class BookController
 
         header('Location: /account');
         exit;
+    }
+
+    public function add(): void
+    {
+        // Vérifier que l'utilisateur est connecté.
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit;
+        }
+
+        $userId = (int) $_SESSION['user_id'];
+
+        // Créer le jeton CSRF si nécessaire.
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
+        // Valeurs initiales du formulaire.
+        $book = [
+            'title' => '',
+            'author' => '',
+            'description' => '',
+            'available' => 1,
+            'image' => null
+        ];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Vérifier le jeton CSRF.
+            $token = $_POST['csrf_token'] ?? '';
+
+            if (
+                !is_string($token) ||
+                !hash_equals($_SESSION['csrf_token'], $token)
+            ) {
+                http_response_code(403);
+                echo 'Requête non autorisée.';
+                return;
+            }
+
+            $title = trim($_POST['title'] ?? '');
+            $author = trim($_POST['author'] ?? '');
+            $description = trim($_POST['description'] ?? '');
+            $available = $_POST['available'] ?? null;
+
+            // Conserver les valeurs saisies en cas d'erreur.
+            $book['title'] = $title;
+            $book['author'] = $author;
+            $book['description'] = $description;
+
+            if (in_array($available, ['0', '1'], true)) {
+                $book['available'] = (int) $available;
+            }
+
+            if (
+                $title === '' ||
+                $author === '' ||
+                $description === '' ||
+                !in_array($available, ['0', '1'], true)
+            ) {
+                $error = 'Veuillez remplir correctement tous les champs.';
+            } else {
+                $image = null;
+
+                // La photo est facultative.
+                if (
+                    isset($_FILES['image']) &&
+                    $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE
+                ) {
+                    try {
+                        $image = $this->uploadBookImage($_FILES['image']);
+                    } catch (RuntimeException $exception) {
+                        $error = $exception->getMessage();
+                    }
+                }
+
+                if (empty($error)) {
+                    $bookManager = new BookManager();
+
+                    try {
+                        $bookManager->createBook(
+                            $userId,
+                            $title,
+                            $author,
+                            $description,
+                            $available === '1',
+                            $image
+                        );
+                    } catch (Throwable $exception) {
+                        // Supprimer le fichier si l'insertion échoue.
+                        if ($image !== null) {
+                            unlink(
+                                __DIR__ . '/../../public/uploads/books/' . $image
+                            );
+                        }
+
+                        throw $exception;
+                    }
+
+                    header('Location: /account');
+                    exit;
+                }
+            }
+        }
+
+        require __DIR__ . '/../views/addBook.php';
     }
 }

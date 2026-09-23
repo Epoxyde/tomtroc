@@ -125,6 +125,14 @@ require __DIR__ . '/templates/header.php';
             </div>
         </div>
 
+        <div class="account-page__library-header">
+            <h2 class="account-page__library-title">Ma bibliothèque</h2>
+
+            <a href="/book/add" class="button">
+                Ajouter un livre
+            </a>
+        </div>
+
         <div class="library-table account-library">
             <table class="library-table__table">
                 <thead>

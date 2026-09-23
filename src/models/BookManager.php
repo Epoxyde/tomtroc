@@ -107,6 +107,47 @@ class BookManager
         return $statement->fetchAll();
     }
 
+    public function createBook(
+        int $userId,
+        string $title,
+        string $author,
+        string $description,
+        bool $available,
+        ?string $image = null
+    ): int {
+        $sql = '
+        INSERT INTO books (
+            user_id,
+            title,
+            author,
+            description,
+            available,
+            image
+        )
+        VALUES (
+            :user_id,
+            :title,
+            :author,
+            :description,
+            :available,
+            :image
+        )
+    ';
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $statement->bindValue(':title', $title);
+        $statement->bindValue(':author', $author);
+        $statement->bindValue(':description', $description);
+        $statement->bindValue(':available', $available, PDO::PARAM_BOOL);
+        $statement->bindValue(':image', $image, $image === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+
+        $statement->execute();
+
+        return (int) $this->db->lastInsertId();
+    }
+
     public function updateBook(
         int $id,
         int $userId,

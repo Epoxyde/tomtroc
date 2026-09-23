@@ -37,6 +37,11 @@ switch ($route) {
         $controller->delete();
         break;
 
+    case 'book/add':
+        $controller = new BookController();
+        $controller->add();
+        break;
+
     case 'register':
         $controller = new AuthController();
         $controller->register();
@@ -61,7 +66,7 @@ switch ($route) {
         $controller = new UserController();
         $controller->updateAvatar();
         break;
-        
+
     case 'profile':
         $controller = new UserController();
         $controller->profile();
