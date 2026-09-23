@@ -850,10 +850,21 @@ body {
 }
 .account-library__actions {
   display: flex;
+  align-items: center;
   gap: 25px;
 }
 .account-library__actions a {
   color: #292929;
+}
+.account-library__actions .account-library__delete {
+  padding: 0;
+  background: none;
+  color: #cb2d2d;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .account-library__delete {
   color: #cb2d2d !important;

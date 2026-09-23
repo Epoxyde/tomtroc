@@ -165,6 +165,21 @@ npm run sass
 
 Sass recompilera automatiquement les styles lors de chaque modification des fichiers SCSS.
 
+## Gestion des images
+
+Les photos des livres et les avatars sont stockés respectivement dans
+`public/uploads/books/` et `public/uploads/avatars/`.
+
+Pour faciliter l'installation et l'évaluation du projet, ces dossiers
+sont actuellement versionnés dans Git, y compris les images de
+démonstration et celles ajoutées pendant les tests.
+
+Dans un environnement de production, les fichiers téléversés par les
+utilisateurs devraient être conservés dans un stockage persistant,
+indépendant du dépôt Git.
+
+Des règles d'exclusion sont prévues à cet effet dans `.gitignore`.
+
 ## Versionnement
 
 Le projet est versionné avec Git et hébergé sur GitHub.

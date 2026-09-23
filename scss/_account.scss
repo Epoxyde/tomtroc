@@ -277,10 +277,25 @@
 
     &__actions {
         display: flex;
+        align-items: center;
         gap: 25px;
 
         a {
             color: vars.$color-text;
+        }
+
+        .account-library__delete {
+            padding: 0;
+
+            background: none;
+            color: #cb2d2d;
+
+            font-family: vars.$font-primary;
+            font-size: 12px;
+            font-weight: 300;
+            text-decoration: underline;
+
+            cursor: pointer;
         }
     }
 

@@ -1,4 +1,7 @@
 <?php
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 $title = 'Mon compte';
 require __DIR__ . '/templates/header.php';
@@ -149,11 +152,26 @@ require __DIR__ . '/templates/header.php';
                                         Éditer
                                     </a>
 
-                                    <a
-                                        class="account-library__delete"
-                                        href="/book/delete?id=<?= (int) $book['id'] ?>">
-                                        Supprimer
-                                    </a>
+                                    <form
+                                        action="/book/delete"
+                                        method="post"
+                                        onsubmit="return confirm('Voulez-vous vraiment supprimer ce livre ?');">
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value="<?= (int) $book['id'] ?>">
+
+                                        <input
+                                            type="hidden"
+                                            name="csrf_token"
+                                            value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+
+                                        <button
+                                            class="account-library__delete"
+                                            type="submit">
+                                            Supprimer
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

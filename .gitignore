@@ -13,3 +13,9 @@ Thumbs.db
 
 # Node
 /node_modules/
+
+# Production : décommenter pour exclure les fichiers téléversés.
+# /public/uploads/books/*
+# !/public/uploads/books/.gitkeep
+# /public/uploads/avatars/*
+# !/public/uploads/avatars/.gitkeep

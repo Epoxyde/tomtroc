@@ -26,6 +26,16 @@ switch ($route) {
         $controller->show();
         break;
 
+    case 'book/edit':
+        $controller = new BookController();
+        $controller->edit();
+        break;
+
+    case 'book/delete':
+        $controller = new BookController();
+        $controller->delete();
+        break;
+
     case 'register':
         $controller = new AuthController();
         $controller->register();
@@ -46,10 +56,6 @@ switch ($route) {
         $controller->account();
         break;
 
-    case 'book/edit':
-        $controller = new BookController();
-        $controller->edit();
-        break;
 
     default:
         http_response_code(404);

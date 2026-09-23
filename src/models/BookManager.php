@@ -140,4 +140,22 @@ class BookManager
 
         $statement->execute();
     }
+
+    public function deleteBook(int $bookId, int $userId): bool
+    {
+        $sql = '
+        DELETE FROM books
+        WHERE id = :id
+          AND user_id = :user_id
+    ';
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':id', $bookId, PDO::PARAM_INT);
+        $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
+
+        $statement->execute();
+
+        return $statement->rowCount() > 0;
+    }
 }

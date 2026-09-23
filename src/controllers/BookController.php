@@ -185,4 +185,61 @@ class BookController
 
         return $fileName;
     }
+
+    public function delete(): void
+    {
+        // Vérifier que l'utilisateur est connecté.
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit;
+        }
+
+        // La suppression doit obligatoirement utiliser POST.
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            return;
+        }
+
+        // Vérifier le jeton CSRF.
+        $token = $_POST['csrf_token'] ?? '';
+
+        if (
+            !is_string($token) ||
+            !isset($_SESSION['csrf_token']) ||
+            !hash_equals($_SESSION['csrf_token'], $token)
+        ) {
+            http_response_code(403);
+            echo 'Requête non autorisée.';
+            return;
+        }
+
+        // Vérifier l'identifiant du livre.
+        $bookId = filter_input(
+            INPUT_POST,
+            'id',
+            FILTER_VALIDATE_INT
+        );
+
+        if (!$bookId || $bookId < 1) {
+            http_response_code(400);
+            echo 'Identifiant de livre invalide.';
+            return;
+        }
+
+        $bookManager = new BookManager();
+
+        $deleted = $bookManager->deleteBook(
+            $bookId,
+            (int) $_SESSION['user_id']
+        );
+
+        if (!$deleted) {
+            http_response_code(404);
+            require __DIR__ . '/../views/404.php';
+            return;
+        }
+
+        header('Location: /account');
+        exit;
+    }
 }
