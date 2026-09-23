@@ -1,10 +1,10 @@
 <?php
 
-$title = $book['title'];
+$title = $book->getTitle();
 $breadcrumb = [
     'label' => 'Nos livres',
     'url' => '/books',
-    'current' => $book['title']
+    'current' => $book->getTitle()
 ];
 
 require __DIR__ . '/templates/header.php';
@@ -14,18 +14,18 @@ require __DIR__ . '/templates/header.php';
     <div class="book-detail__image-wrapper">
         <img
             class="book-detail__image"
-            src="/uploads/books/<?= htmlspecialchars($book['image']) ?>"
-            alt="<?= htmlspecialchars($book['title']) ?>">
+            src="<?= $book->getImage() ? '/uploads/books/' . htmlspecialchars($book->getImage()) : '/images/book-placeholder.png.png' ?>"
+            alt="<?= htmlspecialchars($book->getTitle()) ?>">
     </div>
 
     <div class="book-detail__content">
         <div class="book-detail__inner">
             <h1 class="book-detail__title">
-                <?= htmlspecialchars($book['title']) ?>
+                <?= htmlspecialchars($book->getTitle()) ?>
             </h1>
 
             <p class="book-detail__author">
-                par <?= htmlspecialchars($book['author']) ?>
+                par <?= htmlspecialchars($book->getAuthor()) ?>
             </p>
 
             <div class="book-detail__separator"></div>
@@ -33,27 +33,27 @@ require __DIR__ . '/templates/header.php';
             <h2 class="book-detail__label">DESCRIPTION</h2>
 
             <div class="book-detail__description">
-                <?= nl2br(htmlspecialchars($book['description'])) ?>
+                <?= nl2br(htmlspecialchars($book->getDescription())) ?>
             </div>
 
             <h2 class="book-detail__label">PROPRIÉTAIRE</h2>
 
             <a
                 class="book-detail__owner"
-                href="/profile?id=<?= (int) $book['user_id'] ?>">
-                <?php if (!empty($book['avatar'])): ?>
+                href="/profile?id=<?= (int) $book->getUserId() ?>">
+                <?php if (!empty($book->getOwnerAvatar())): ?>
                     <img
                         class="book-detail__avatar"
-                        src="/uploads/avatars/<?= htmlspecialchars($book['avatar']) ?>"
+                        src="/uploads/avatars/<?= htmlspecialchars($book->getOwnerAvatar()) ?>"
                         alt="">
                 <?php endif; ?>
 
-                <span><?= htmlspecialchars($book['username']) ?></span>
+                <span><?= htmlspecialchars($book->getOwnerUsername()) ?></span>
             </a>
 
             <a
                 class="button book-detail__message"
-                href="/messages?user=<?= (int) $book['user_id'] ?>">
+                href="/messages?user=<?= (int) $book->getUserId() ?>">
                 Envoyer un message
             </a>
         </div>

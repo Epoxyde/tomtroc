@@ -47,25 +47,25 @@ require __DIR__ . '/templates/header.php';
                 <article class="book-card">
                     <a
                         class="book-card__link"
-                        href="/book?id=<?= (int) $book['id'] ?>"
+                        href="/book?id=<?= $book->getId() ?>"
                     >
                         <img
                             class="book-card__image"
-                            src="/uploads/books/<?= htmlspecialchars($book['image']) ?>"
-                            alt="<?= htmlspecialchars($book['title']) ?>"
+                            src="<?= $book->getImage() ? '/uploads/books/' . htmlspecialchars($book->getImage()) : '/images/book-placeholder.png.png' ?>"
+                            alt="<?= htmlspecialchars($book->getTitle()) ?>"
                         >
 
                         <div class="book-card__content">
                             <h3 class="book-card__title">
-                                <?= htmlspecialchars($book['title']) ?>
+                                <?= htmlspecialchars($book->getTitle()) ?>
                             </h3>
 
                             <p class="book-card__author">
-                                <?= htmlspecialchars($book['author']) ?>
+                                <?= htmlspecialchars($book->getAuthor()) ?>
                             </p>
 
                             <p class="book-card__seller">
-                                Vendu par : <?= htmlspecialchars($book['username']) ?>
+                                Vendu par : <?= htmlspecialchars($book->getOwnerUsername()) ?>
                             </p>
                         </div>
                     </a>

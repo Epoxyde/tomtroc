@@ -22,7 +22,7 @@ require __DIR__ . '/templates/header.php';
                 <img
                     id="book-image-preview"
                     class="edit-book__image"
-                    src="/images/book-placeholder.png"
+                    src="/images/book-placeholder.png.png"
                     alt="Aperçu de la photo du livre">
 
                 <label class="edit-book__image-link" for="image">
@@ -63,7 +63,7 @@ require __DIR__ . '/templates/header.php';
                         type="text"
                         id="title"
                         name="title"
-                        value="<?= htmlspecialchars($book['title']) ?>"
+                        value="<?= htmlspecialchars($book->getTitle()) ?>"
                         required>
                 </div>
 
@@ -74,7 +74,7 @@ require __DIR__ . '/templates/header.php';
                         type="text"
                         id="author"
                         name="author"
-                        value="<?= htmlspecialchars($book['author']) ?>"
+                        value="<?= htmlspecialchars($book->getAuthor()) ?>"
                         required>
                 </div>
 
@@ -85,7 +85,7 @@ require __DIR__ . '/templates/header.php';
                         id="description"
                         name="description"
                         rows="8"
-                        required><?= htmlspecialchars($book['description']) ?></textarea>
+                        required><?= htmlspecialchars($book->getDescription()) ?></textarea>
                 </div>
 
                 <div class="edit-book__group">
@@ -94,13 +94,13 @@ require __DIR__ . '/templates/header.php';
                     <select id="available" name="available">
                         <option
                             value="1"
-                            <?= $book['available'] ? 'selected' : '' ?>>
+                            <?= $book->isAvailable() ? 'selected' : '' ?>>
                             Disponible
                         </option>
 
                         <option
                             value="0"
-                            <?= !$book['available'] ? 'selected' : '' ?>>
+                            <?= !$book->isAvailable() ? 'selected' : '' ?>>
                             Non disponible
                         </option>
                     </select>

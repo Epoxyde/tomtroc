@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../helpers/format.php';
 
-$title = 'Profil de ' . $user['username'];
+$title = 'Profil de ' . $user->getUsername();
 require __DIR__ . '/templates/header.php';
 ?>
 
@@ -9,21 +9,21 @@ require __DIR__ . '/templates/header.php';
     <div class="profile-page__container">
 
         <aside class="profile-page__identity">
-            <?php if (!empty($user['avatar'])): ?>
+            <?php if (!empty($user->getAvatar())): ?>
                 <img
                     class="profile-page__avatar"
-                    src="/uploads/avatars/<?= htmlspecialchars($user['avatar']) ?>"
-                    alt="Photo de profil de <?= htmlspecialchars($user['username']) ?>">
+                    src="/uploads/avatars/<?= htmlspecialchars($user->getAvatar()) ?>"
+                    alt="Photo de profil de <?= htmlspecialchars($user->getUsername()) ?>">
             <?php endif; ?>
 
             <div class="profile-page__separator"></div>
 
             <h1 class="profile-page__username">
-                <?= htmlspecialchars($user['username']) ?>
+                <?= htmlspecialchars($user->getUsername()) ?>
             </h1>
 
             <p class="profile-page__member">
-                <?= htmlspecialchars(formatMemberSince($user['created_at'])) ?>
+                <?= htmlspecialchars(formatMemberSince($user->getCreatedAt())) ?>
             </p>
 
             <p class="profile-page__library-label">
@@ -44,11 +44,11 @@ require __DIR__ . '/templates/header.php';
 
             <?php if (
                 !isset($_SESSION['user_id']) ||
-                (int) $_SESSION['user_id'] !== (int) $user['id']
+                (int) $_SESSION['user_id'] !== (int) $user->getId()
             ): ?>
                 <a
                     class="button button--outline profile-page__message"
-                    href="/messages?user=<?= (int) $user['id'] ?>">
+                    href="/messages?user=<?= (int) $user->getId() ?>">
                     Écrire un message
                 </a>
             <?php endif; ?>
@@ -69,12 +69,12 @@ require __DIR__ . '/templates/header.php';
                     <?php foreach ($books as $book): ?>
                         <tr>
                             <td>
-                                <?php if (!empty($book['image'])): ?>
-                                    <a href="/book?id=<?= (int) $book['id'] ?>">
+                                <?php if (!empty($book->getImage())): ?>
+                                    <a href="/book?id=<?= (int) $book->getId() ?>">
                                         <img
                                             class="profile-page__book-image"
-                                            src="/uploads/books/<?= htmlspecialchars($book['image']) ?>"
-                                            alt="<?= htmlspecialchars($book['title']) ?>">
+                                            src="/uploads/books/<?= htmlspecialchars($book->getImage()) ?>"
+                                            alt="<?= htmlspecialchars($book->getTitle()) ?>">
                                     </a>
                                 <?php endif; ?>
                             </td>
@@ -82,16 +82,16 @@ require __DIR__ . '/templates/header.php';
                             <td>
                                 <a
                                     class="profile-page__book-link"
-                                    href="/book?id=<?= (int) $book['id'] ?>">
-                                    <?= htmlspecialchars($book['title']) ?>
+                                    href="/book?id=<?= (int) $book->getId() ?>">
+                                    <?= htmlspecialchars($book->getTitle()) ?>
                                 </a>
                             </td>
 
-                            <td><?= htmlspecialchars($book['author']) ?></td>
+                            <td><?= htmlspecialchars($book->getAuthor()) ?></td>
 
                             <td>
                                 <p class="profile-page__description">
-                                    <?= htmlspecialchars($book['description']) ?>
+                                    <?= htmlspecialchars($book->getDescription()) ?>
                                 </p>
                             </td>
                         </tr>

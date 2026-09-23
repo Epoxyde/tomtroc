@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/User.php';
 
 class UserManager
 {
@@ -12,7 +13,7 @@ class UserManager
         $this->db = $database->getConnection();
     }
 
-    public function getUserByEmail(string $email): array|false
+    public function getUserByEmail(string $email): User|false
     {
         $sql = '
             SELECT *
@@ -24,7 +25,9 @@ class UserManager
         $statement->bindValue(':email', $email);
         $statement->execute();
 
-        return $statement->fetch();
+        $row = $statement->fetch();
+
+        return $row === false ? false : User::fromArray($row);
     }
 
     public function createUser(
@@ -46,7 +49,7 @@ class UserManager
         return (int) $this->db->lastInsertId();
     }
 
-    public function getUserById(int $id): array|false
+    public function getUserById(int $id): User|false
     {
         $sql = '
         SELECT id, username, email, avatar, created_at
@@ -58,7 +61,9 @@ class UserManager
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetch();
+        $row = $statement->fetch();
+
+        return $row === false ? false : User::fromArray($row);
     }
 
     public function updateUser(

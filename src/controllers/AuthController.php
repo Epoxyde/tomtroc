@@ -62,12 +62,12 @@ class AuthController
                 $userManager = new UserManager();
                 $user = $userManager->getUserByEmail($email);
 
-                if (!$user || !password_verify($password, $user['password'])) {
+                if (!$user || !$user->verifyPassword($password)) {
                     $error = 'Adresse email ou mot de passe incorrect.';
                 } else {
 
                     session_regenerate_id(true);
-                    $_SESSION['user_id'] = (int) $user['id'];
+                    $_SESSION['user_id'] = (int) $user->getId();
 
                     header('Location: /');
                     exit;

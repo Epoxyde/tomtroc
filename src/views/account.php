@@ -27,11 +27,11 @@ require __DIR__ . '/templates/header.php';
                         name="csrf_token"
                         value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
 
-                    <?php if (!empty($user['avatar'])): ?>
+                    <?php if (!empty($user->getAvatar())): ?>
                         <img
                             class="account-profile__avatar"
-                            src="/uploads/avatars/<?= htmlspecialchars($user['avatar']) ?>"
-                            alt="Photo de profil de <?= htmlspecialchars($user['username']) ?>">
+                            src="/uploads/avatars/<?= htmlspecialchars($user->getAvatar()) ?>"
+                            alt="Photo de profil de <?= htmlspecialchars($user->getUsername()) ?>">
                     <?php endif; ?>
 
                     <label
@@ -52,11 +52,11 @@ require __DIR__ . '/templates/header.php';
                 <div class="account-profile__separator"></div>
 
                 <h2 class="account-profile__username">
-                    <?= htmlspecialchars($user['username']) ?>
+                    <?= htmlspecialchars($user->getUsername()) ?>
                 </h2>
 
                 <p class="account-profile__member">
-                    <?= htmlspecialchars(formatMemberSince($user['created_at'])) ?>
+                    <?= htmlspecialchars(formatMemberSince($user->getCreatedAt())) ?>
                 </p>
 
                 <p class="account-profile__library-label">
@@ -93,7 +93,7 @@ require __DIR__ . '/templates/header.php';
                             type="email"
                             id="email"
                             name="email"
-                            value="<?= htmlspecialchars($user['email']) ?>">
+                            value="<?= htmlspecialchars($user->getEmail()) ?>">
                     </div>
 
                     <div class="account-form__group">
@@ -113,7 +113,7 @@ require __DIR__ . '/templates/header.php';
                             type="text"
                             id="username"
                             name="username"
-                            value="<?= htmlspecialchars($user['username']) ?>">
+                            value="<?= htmlspecialchars($user->getUsername()) ?>">
                     </div>
 
                     <button
@@ -150,37 +150,37 @@ require __DIR__ . '/templates/header.php';
                     <?php foreach ($books as $book): ?>
                         <tr>
                             <td>
-                                <?php if ($book['image']): ?>
+                                <?php if ($book->getImage()): ?>
                                     <img
                                         class="library-table__image"
-                                        src="/uploads/books/<?= htmlspecialchars($book['image']) ?>"
-                                        alt="<?= htmlspecialchars($book['title']) ?>">
+                                        src="/uploads/books/<?= htmlspecialchars($book->getImage()) ?>"
+                                        alt="<?= htmlspecialchars($book->getTitle()) ?>">
                                 <?php endif; ?>
                             </td>
 
                             <td>
-                                <?= htmlspecialchars($book['title']) ?>
+                                <?= htmlspecialchars($book->getTitle()) ?>
                             </td>
 
                             <td>
-                                <?= htmlspecialchars($book['author']) ?>
+                                <?= htmlspecialchars($book->getAuthor()) ?>
                             </td>
 
                             <td>
                                 <p class="library-table__description">
-                                    <?= htmlspecialchars($book['description']) ?>
+                                    <?= htmlspecialchars($book->getDescription()) ?>
                                 </p>
                             </td>
 
                             <td>
-                                <span class="account-library__availability <?= $book['available'] ? 'account-library__availability--available' : 'account-library__availability--unavailable' ?>">
-                                    <?= $book['available'] ? 'disponible' : 'non dispo.' ?>
+                                <span class="account-library__availability <?= $book->isAvailable() ? 'account-library__availability--available' : 'account-library__availability--unavailable' ?>">
+                                    <?= $book->isAvailable() ? 'disponible' : 'non dispo.' ?>
                                 </span>
                             </td>
 
                             <td>
                                 <div class="account-library__actions">
-                                    <a href="/book/edit?id=<?= (int) $book['id'] ?>">
+                                    <a href="/book/edit?id=<?= (int) $book->getId() ?>">
                                         Éditer
                                     </a>
 
@@ -191,7 +191,7 @@ require __DIR__ . '/templates/header.php';
                                         <input
                                             type="hidden"
                                             name="id"
-                                            value="<?= (int) $book['id'] ?>">
+                                            value="<?= (int) $book->getId() ?>">
 
                                         <input
                                             type="hidden"

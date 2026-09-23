@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/Book.php';
 
 class BookManager
 {
@@ -12,13 +13,16 @@ class BookManager
         $this->db = $database->getConnection();
     }
 
+    /**
+     * @return Book[]
+     */
     public function getLatestBooks(int $limit = 4): array
     {
         $sql = '
             SELECT books.*, users.username
             FROM books
             JOIN users ON users.id = books.user_id
-            ORDER BY books.id ASC
+            ORDER BY books.created_at DESC, books.id DESC
             LIMIT :limit
         ';
 
@@ -26,9 +30,15 @@ class BookManager
         $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetchAll();
+        return array_map(
+            fn (array $row): Book => Book::fromArray($row),
+            $statement->fetchAll()
+        );
     }
 
+    /**
+     * @return Book[]
+     */
     public function getAvailableBooks(string $search = ''): array
     {
         $sql = '
@@ -52,10 +62,13 @@ class BookManager
 
         $statement->execute();
 
-        return $statement->fetchAll();
+        return array_map(
+            fn (array $row): Book => Book::fromArray($row),
+            $statement->fetchAll()
+        );
     }
 
-    public function getBookById(int $id): array|false
+    public function getBookById(int $id): Book|false
     {
         $sql = '
             SELECT
@@ -71,9 +84,14 @@ class BookManager
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetch();
+        $row = $statement->fetch();
+
+        return $row === false ? false : Book::fromArray($row);
     }
 
+    /**
+     * @return Book[]
+     */
     public function getBooksByUserId(int $userId): array
     {
         $sql = '
@@ -87,9 +105,15 @@ class BookManager
         $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetchAll();
+        return array_map(
+            fn (array $row): Book => Book::fromArray($row),
+            $statement->fetchAll()
+        );
     }
 
+    /**
+     * @return Book[]
+     */
     public function getAvailableBooksByUserId(int $userId): array
     {
         $sql = '
@@ -104,7 +128,10 @@ class BookManager
         $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetchAll();
+        return array_map(
+            fn (array $row): Book => Book::fromArray($row),
+            $statement->fetchAll()
+        );
     }
 
     public function createBook(

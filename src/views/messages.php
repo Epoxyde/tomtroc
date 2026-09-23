@@ -18,7 +18,7 @@ require __DIR__ . '/templates/header.php';
                 <?php foreach ($conversations as $conversation): ?>
                     <?php
                     $isActive = $correspondent
-                        && (int) $correspondent['id'] === (int) $conversation['id'];
+                        && (int) $correspondent->getId() === (int) $conversation['id'];
 
                     $lastMessageDate = new DateTime($conversation['last_message_date']);
                     ?>
@@ -69,42 +69,42 @@ require __DIR__ . '/templates/header.php';
             <?php if ($correspondent): ?>
 
                 <div class="messages-page__recipient">
-                    <?php if (!empty($correspondent['avatar'])): ?>
+                    <?php if (!empty($correspondent->getAvatar())): ?>
                         <img
                             class="messages-page__recipient-avatar"
-                            src="/uploads/avatars/<?= htmlspecialchars($correspondent['avatar']) ?>"
+                            src="/uploads/avatars/<?= htmlspecialchars($correspondent->getAvatar()) ?>"
                             alt="">
                     <?php endif; ?>
 
-                    <a href="/profile?id=<?= (int) $correspondent['id'] ?>">
-                        <?= htmlspecialchars($correspondent['username']) ?>
+                    <a href="/profile?id=<?= (int) $correspondent->getId() ?>">
+                        <?= htmlspecialchars($correspondent->getUsername()) ?>
                     </a>
                 </div>
 
                 <div class="messages-page__thread">
                     <?php foreach ($messages as $message): ?>
                         <?php
-                        $isMine = (int) $message['sender_id'] === $userId;
-                        $messageDate = new DateTime($message['created_at']);
+                        $isMine = $message->getSenderId() === $userId;
+                        $messageDate = new DateTime($message->getCreatedAt());
                         ?>
 
                         <div class="messages-page__message <?= $isMine ? 'messages-page__message--mine' : 'messages-page__message--received' ?>">
 
                             <div class="messages-page__message-meta">
-                                <?php if (!$isMine && !empty($correspondent['avatar'])): ?>
+                                <?php if (!$isMine && !empty($correspondent->getAvatar())): ?>
                                     <img
                                         class="messages-page__message-avatar"
-                                        src="/uploads/avatars/<?= htmlspecialchars($correspondent['avatar']) ?>"
+                                        src="/uploads/avatars/<?= htmlspecialchars($correspondent->getAvatar()) ?>"
                                         alt="">
                                 <?php endif; ?>
 
                                 <time datetime="<?= htmlspecialchars($messageDate->format('c')) ?>">
-                                    <?= formatMessageDate($message['created_at']) ?>
+                                    <?= formatMessageDate($message->getCreatedAt()) ?>
                                 </time>
                             </div>
 
                             <p class="messages-page__message-bubble">
-                                <?= nl2br(htmlspecialchars($message['content'])) ?>
+                                <?= nl2br(htmlspecialchars($message->getContent())) ?>
                             </p>
                         </div>
                     <?php endforeach; ?>
@@ -113,7 +113,7 @@ require __DIR__ . '/templates/header.php';
                 <!-- Formulaire d'envoi -->
                 <form
                     class="messages-page__form"
-                    action="/messages?user=<?= (int) $correspondent['id'] ?>"
+                    action="/messages?user=<?= (int) $correspondent->getId() ?>"
                     method="post">
 
                     <input

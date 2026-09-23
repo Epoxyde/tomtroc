@@ -68,7 +68,7 @@ class BookController
         }
 
         // Vérifier que le livre appartient à l'utilisateur.
-        if ((int) $book['user_id'] !== $userId) {
+        if ($book->getUserId() !== $userId) {
             http_response_code(403);
             echo 'Vous ne pouvez pas modifier ce livre.';
             return;
@@ -138,12 +138,12 @@ class BookController
             }
 
             // Conserver les valeurs saisies en cas d'erreur.
-            $book['title'] = $title;
-            $book['author'] = $author;
-            $book['description'] = $description;
+            $book->setTitle($title);
+            $book->setAuthor($author);
+            $book->setDescription($description);
 
             if (in_array($available, ['0', '1'], true)) {
-                $book['available'] = (int) $available;
+                $book->setAvailable($available === '1');
             }
         }
 
@@ -271,14 +271,17 @@ class BookController
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
 
-        // Valeurs initiales du formulaire.
-        $book = [
-            'title' => '',
-            'author' => '',
-            'description' => '',
-            'available' => 1,
-            'image' => null
-        ];
+        // L'identifiant et la date seront attribués par la base à la création.
+        $book = new Book(
+            id: null,
+            userId: $userId,
+            title: '',
+            author: '',
+            description: '',
+            image: null,
+            available: true,
+            createdAt: null
+        );
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Vérifier le jeton CSRF.
@@ -299,12 +302,12 @@ class BookController
             $available = $_POST['available'] ?? null;
 
             // Conserver les valeurs saisies en cas d'erreur.
-            $book['title'] = $title;
-            $book['author'] = $author;
-            $book['description'] = $description;
+            $book->setTitle($title);
+            $book->setAuthor($author);
+            $book->setDescription($description);
 
             if (in_array($available, ['0', '1'], true)) {
-                $book['available'] = (int) $available;
+                $book->setAvailable($available === '1');
             }
 
             if (
@@ -334,11 +337,11 @@ class BookController
 
                     try {
                         $bookManager->createBook(
-                            $userId,
-                            $title,
-                            $author,
-                            $description,
-                            $available === '1',
+                            $book->getUserId(),
+                            $book->getTitle(),
+                            $book->getAuthor(),
+                            $book->getDescription(),
+                            $book->isAvailable(),
                             $image
                         );
                     } catch (Throwable $exception) {

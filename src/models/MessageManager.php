@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Database.php';
+require_once __DIR__ . '/Message.php';
 
 class MessageManager
 {
@@ -74,6 +75,8 @@ class MessageManager
     /**
      * Récupère les messages entre deux utilisateurs,
      * dans l'ordre chronologique.
+     *
+     * @return Message[]
      */
     public function getMessages(
         int $userId,
@@ -100,7 +103,10 @@ class MessageManager
             'user_recipient' => $userId
         ]);
 
-        return $statement->fetchAll();
+        return array_map(
+            fn (array $row): Message => Message::fromArray($row),
+            $statement->fetchAll()
+        );
     }
 
     /**

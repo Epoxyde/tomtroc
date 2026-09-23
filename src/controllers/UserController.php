@@ -29,7 +29,7 @@ class UserController
 
                 if (
                     $existingUser &&
-                    (int) $existingUser['id'] !== $userId
+                    (int) $existingUser->getId() !== $userId
                 ) {
                     $error = 'Cette adresse email est déjà utilisée.';
                 } else {
