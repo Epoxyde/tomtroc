@@ -1,3 +1,11 @@
+<?php
+
+$currentRoute = trim(
+    parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH),
+    '/'
+);
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -27,13 +35,24 @@
             <nav class="header__nav" aria-label="Navigation principale">
 
                 <div class="header__nav-main">
-                    <a class="header__link header__link--active" href="/">Accueil</a>
-                    <a class="header__link" href="/books">Nos livres à l'échange</a>
+                    <a
+                        class="header__link <?= $currentRoute === '' ? 'header__link--active' : '' ?>"
+                        href="/">
+                        Accueil
+                    </a>
+
+                    <a
+                        class="header__link <?= in_array($currentRoute, ['books', 'book'], true) ? 'header__link--active' : '' ?>"
+                        href="/books">
+                        Nos livres à l'échange
+                    </a>
                 </div>
 
                 <div class="header__nav-account">
                     <?php if (isset($_SESSION['user_id'])): ?>
-                        <a class="header__link" href="/messages">
+                        <a
+                            class="header__link <?= $currentRoute === 'messages' ? 'header__link--active' : '' ?>"
+                            href="/messages">
                             <img
                                 src="/images/icon-messagerie.svg"
                                 alt=""
@@ -41,7 +60,9 @@
                             <span>Messagerie</span>
                         </a>
 
-                        <a class="header__link" href="/account">
+                        <a
+                            class="header__link <?= $currentRoute === 'account' ? 'header__link--active' : '' ?>"
+                            href="/account">
                             <img
                                 src="/images/icon-moncompte.svg"
                                 alt=""
@@ -53,7 +74,9 @@
                             Déconnexion
                         </a>
                     <?php else: ?>
-                        <a class="header__link" href="/login">
+                        <a
+                            class="header__link <?= in_array($currentRoute, ['login', 'register'], true) ? 'header__link--active' : '' ?>"
+                            href="/login">
                             Connexion
                         </a>
                     <?php endif; ?>
