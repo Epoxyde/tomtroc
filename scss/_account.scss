@@ -188,70 +188,6 @@
 }
 
 .account-library {
-    overflow: hidden;
-
-    background-color: #fff;
-    border-radius: 20px;
-
-    &__table {
-        width: 100%;
-
-        border-collapse: collapse;
-        table-layout: fixed;
-
-        thead {
-            border-bottom: solid #eee 1px;
-        }
-
-        th,
-        td {
-            padding: 25px 20px;
-
-            color: vars.$color-text;
-
-            font-family: vars.$font-primary;
-            font-size: 12px;
-            font-weight: 300;
-            text-align: left;
-            vertical-align: middle;
-        }
-
-        th {
-            padding-top: 20px;
-            padding-bottom: 10px;
-
-            font-size: 8px;
-            font-weight: 600;
-        }
-
-        tbody tr:nth-child(even) {
-            background-color: vars.$color-table-row;
-        }
-
-        th:first-child,
-        td:first-child {
-            padding-left: 70px;
-        }
-    }
-
-    &__image {
-        width: 80px;
-        height: 80px;
-
-        object-fit: cover;
-        object-position: bottom;
-    }
-
-    &__description {
-        display: -webkit-box;
-        overflow: hidden;
-
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
-
-        line-height: 1.4;
-    }
-
     &__availability {
         display: inline-block;
         padding: 4px 12px;
@@ -259,7 +195,6 @@
         border-radius: 20px;
 
         color: #fff;
-
         font-size: 8px;
         white-space: nowrap;
 
@@ -270,9 +205,6 @@
         &--unavailable {
             background-color: vars.$color-unavailable;
         }
-    }
-    tbody tr:nth-child(even) {
-        background-color: vars.$color-table-row;
     }
 
     &__actions {
@@ -294,12 +226,7 @@
             font-size: 12px;
             font-weight: 300;
             text-decoration: underline;
-
             cursor: pointer;
         }
-    }
-
-    &__delete {
-        color: #cb2d2d !important;
     }
 }

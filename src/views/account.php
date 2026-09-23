@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../helpers/format.php';
+
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
@@ -32,7 +34,7 @@ require __DIR__ . '/templates/header.php';
                 </h2>
 
                 <p class="account-profile__member">
-                    membre depuis 1 an
+                    <?= htmlspecialchars(formatMemberSince($user['created_at'])) ?>
                 </p>
 
                 <p class="account-profile__library-label">
@@ -101,8 +103,8 @@ require __DIR__ . '/templates/header.php';
             </div>
         </div>
 
-        <div class="account-library">
-            <table class="account-library__table">
+        <div class="library-table account-library">
+            <table class="library-table__table">
                 <thead>
                     <tr>
                         <th>PHOTO</th>
@@ -120,7 +122,7 @@ require __DIR__ . '/templates/header.php';
                             <td>
                                 <?php if ($book['image']): ?>
                                     <img
-                                        class="account-library__image"
+                                        class="library-table__image"
                                         src="/uploads/books/<?= htmlspecialchars($book['image']) ?>"
                                         alt="<?= htmlspecialchars($book['title']) ?>">
                                 <?php endif; ?>
@@ -135,7 +137,7 @@ require __DIR__ . '/templates/header.php';
                             </td>
 
                             <td>
-                                <p class="account-library__description">
+                                <p class="library-table__description">
                                     <?= htmlspecialchars($book['description']) ?>
                                 </p>
                             </td>

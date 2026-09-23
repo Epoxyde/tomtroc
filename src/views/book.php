@@ -15,8 +15,7 @@ require __DIR__ . '/templates/header.php';
         <img
             class="book-detail__image"
             src="/uploads/books/<?= htmlspecialchars($book['image']) ?>"
-            alt="<?= htmlspecialchars($book['title']) ?>"
-        >
+            alt="<?= htmlspecialchars($book['title']) ?>">
     </div>
 
     <div class="book-detail__content">
@@ -41,14 +40,12 @@ require __DIR__ . '/templates/header.php';
 
             <a
                 class="book-detail__owner"
-                href="/profile?id=<?= (int) $book['user_id'] ?>"
-            >
-                <?php if ($book['avatar']): ?>
+                href="/profile?id=<?= (int) $book['user_id'] ?>">
+                <?php if (!empty($book['avatar'])): ?>
                     <img
                         class="book-detail__avatar"
                         src="/uploads/avatars/<?= htmlspecialchars($book['avatar']) ?>"
-                        alt=""
-                    >
+                        alt="">
                 <?php endif; ?>
 
                 <span><?= htmlspecialchars($book['username']) ?></span>
@@ -56,8 +53,7 @@ require __DIR__ . '/templates/header.php';
 
             <a
                 class="button book-detail__message"
-                href="/messages?user=<?= (int) $book['user_id'] ?>"
-            >
+                href="/messages?user=<?= (int) $book['user_id'] ?>">
                 Envoyer un message
             </a>
         </div>

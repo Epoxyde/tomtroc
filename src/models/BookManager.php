@@ -90,6 +90,23 @@ class BookManager
         return $statement->fetchAll();
     }
 
+    public function getAvailableBooksByUserId(int $userId): array
+    {
+        $sql = '
+        SELECT *
+        FROM books
+        WHERE user_id = :user_id
+          AND available = 1
+        ORDER BY id ASC
+    ';
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public function updateBook(
         int $id,
         int $userId,

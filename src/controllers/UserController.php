@@ -69,4 +69,33 @@ class UserController
 
         require __DIR__ . '/../views/account.php';
     }
+
+    public function profile(): void
+    {
+        $userId = filter_input(
+            INPUT_GET,
+            'id',
+            FILTER_VALIDATE_INT
+        );
+
+        if (!$userId || $userId < 1) {
+            http_response_code(404);
+            require __DIR__ . '/../views/404.php';
+            return;
+        }
+
+        $userManager = new UserManager();
+        $user = $userManager->getUserById($userId);
+
+        if (!$user) {
+            http_response_code(404);
+            require __DIR__ . '/../views/404.php';
+            return;
+        }
+
+        $bookManager = new BookManager();
+        $books = $bookManager->getAvailableBooksByUserId($userId);
+
+        require __DIR__ . '/../views/profile.php';
+    }
 }

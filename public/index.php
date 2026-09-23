@@ -56,6 +56,11 @@ switch ($route) {
         $controller->account();
         break;
 
+    case 'profile':
+        $controller = new UserController();
+        $controller->profile();
+        break;
+
 
     default:
         http_response_code(404);
