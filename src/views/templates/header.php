@@ -1,4 +1,15 @@
 <?php
+$unreadMessages = 0;
+
+if (isset($_SESSION['user_id'])) {
+    require_once __DIR__ . '/../../models/MessageManager.php';
+
+    $messageManager = new MessageManager();
+
+    $unreadMessages = $messageManager->countUnreadMessages(
+        (int) $_SESSION['user_id']
+    );
+}
 
 $currentRoute = trim(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH),
@@ -57,7 +68,14 @@ $currentRoute = trim(
                                 src="/images/icon-messagerie.svg"
                                 alt=""
                                 aria-hidden="true">
+
                             <span>Messagerie</span>
+
+                            <?php if ($unreadMessages > 0): ?>
+                                <span class="header__message-count">
+                                    <?= $unreadMessages ?>
+                                </span>
+                            <?php endif; ?>
                         </a>
 
                         <a

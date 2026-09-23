@@ -71,6 +71,8 @@ class MessageController
                 }
             }
 
+            $messageManager->markAsRead($userId, $correspondentId);
+
             $messages = $messageManager->getMessages(
                 $userId,
                 $correspondentId

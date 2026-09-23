@@ -81,6 +81,22 @@ body {
   align-items: center;
   gap: 58px;
 }
+.header__message-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 14px;
+  height: 17px;
+  padding: 0 3px;
+  margin-left: -3px;
+  background-color: #292929;
+  border-radius: 20px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+}
 .header__link {
   display: flex;
   align-items: center;
@@ -937,6 +953,28 @@ body {
   color: #A6A6A6;
   font-family: "Inter", sans-serif;
   font-size: 14px;
+}
+.messages-page__conversation-identity {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+.messages-page__unread-count {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  background-color: #292929;
+  border-radius: 20px;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .auth-page {

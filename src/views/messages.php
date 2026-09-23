@@ -36,9 +36,17 @@ require __DIR__ . '/templates/header.php';
 
                         <div class="messages-page__conversation-content">
                             <div class="messages-page__conversation-header">
-                                <span class="messages-page__conversation-name">
-                                    <?= htmlspecialchars($conversation['username']) ?>
-                                </span>
+                                <div class="messages-page__conversation-identity">
+                                    <span class="messages-page__conversation-name">
+                                        <?= htmlspecialchars($conversation['username']) ?>
+                                    </span>
+
+                                    <?php if ((int) $conversation['unread_count'] > 0): ?>
+                                        <span class="messages-page__unread-count">
+                                            <?= (int) $conversation['unread_count'] ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
 
                                 <time
                                     class="messages-page__conversation-date"

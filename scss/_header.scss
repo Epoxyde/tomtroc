@@ -47,6 +47,26 @@
         gap: 58px;
     }
 
+    &__message-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 14px;
+        height: 17px;
+        padding: 0 3px;
+        margin-left: -3px;
+
+        background-color: vars.$color-text;
+        border-radius: 20px;
+
+        color: #fff;
+        font-family: vars.$font-primary;
+        font-size: 9px;
+        font-weight: 600;
+        line-height: 1;
+    }
+
     &__link {
         display: flex;
         align-items: center;

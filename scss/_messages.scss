@@ -1,7 +1,6 @@
 @use "variables" as vars;
 
 .messages-page {
-
     &__layout {
         display: grid;
         grid-template-columns: 307px minmax(0, 1fr);
@@ -260,5 +259,33 @@
         color: vars.$color-text-light;
         font-family: vars.$font-primary;
         font-size: 14px;
+    }
+
+    &__conversation-identity {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+
+        min-width: 0;
+    }
+
+    &__unread-count {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+
+        min-width: 17px;
+        height: 17px;
+        padding: 0 4px;
+
+        background-color: vars.$color-text;
+        border-radius: 20px;
+
+        color: #fff;
+        font-family: vars.$font-primary;
+        font-size: 9px;
+        font-weight: 600;
+        line-height: 1;
     }
 }
