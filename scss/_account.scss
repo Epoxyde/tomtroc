@@ -1,0 +1,279 @@
+@use "variables" as vars;
+
+.account-page {
+    background-color: vars.$color-background-light;
+
+    &__container {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 70px 0 100px;
+    }
+
+    &__title {
+        margin-bottom: 45px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-title;
+        font-size: 26px;
+        font-weight: 400;
+    }
+}
+
+.account-profile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+
+    margin-bottom: 30px;
+
+    &__identity,
+    &__information {
+        min-height: 400px;
+
+        background-color: #fff;
+        border-radius: 20px;
+    }
+
+    &__identity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 45px;
+    }
+
+    &__avatar {
+        width: 135px;
+        height: 135px;
+
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__avatar-link {
+        margin-top: 8px;
+
+        color: vars.$color-text-light;
+
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 300;
+    }
+
+    &__separator {
+        width: 240px;
+        height: 1px;
+        margin: 45px 0;
+
+        background-color: #eee;
+    }
+
+    &__username {
+        margin-bottom: 10px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-title;
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    &__member {
+        margin-bottom: 25px;
+
+        color: vars.$color-text-light;
+
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 300;
+    }
+
+    &__library-label {
+        margin-bottom: 8px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-primary;
+        font-size: 8px;
+        font-weight: 600;
+    }
+
+    &__library-count {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 400;
+
+        img {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    &__information {
+        padding: 45px 115px;
+    }
+
+    &__information-title {
+        margin-bottom: 30px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-primary;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        label {
+            color: vars.$color-text-light;
+
+            font-family: vars.$font-primary;
+            font-size: 12px;
+            font-weight: 300;
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            padding: 0 15px;
+
+            background-color: vars.$color-table-row;
+            border: 0;
+            border-radius: 5px;
+
+            color: vars.$color-text;
+
+            font-family: vars.$font-primary;
+            font-size: 12px;
+            font-weight: 300;
+
+            outline: none;
+        }
+    }
+
+    &__submit {
+        align-self: flex-start;
+
+        margin-top: 10px;
+        padding: 0 30px;
+    }
+}
+
+.account-library {
+    overflow: hidden;
+
+    background-color: #fff;
+    border-radius: 20px;
+
+    &__table {
+        width: 100%;
+
+        border-collapse: collapse;
+        table-layout: fixed;
+
+        thead {
+            border-bottom: solid #eee 1px;
+        }
+
+        th,
+        td {
+            padding: 25px 20px;
+
+            color: vars.$color-text;
+
+            font-family: vars.$font-primary;
+            font-size: 12px;
+            font-weight: 300;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        th {
+            padding-top: 20px;
+            padding-bottom: 10px;
+
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: vars.$color-table-row;
+        }
+
+        th:first-child,
+        td:first-child {
+            padding-left: 70px;
+        }
+    }
+
+    &__image {
+        width: 80px;
+        height: 80px;
+
+        object-fit: cover;
+    }
+
+    &__description {
+        display: -webkit-box;
+        overflow: hidden;
+
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+
+        line-height: 1.4;
+    }
+
+    &__availability {
+        display: inline-block;
+        padding: 4px 12px;
+
+        border-radius: 20px;
+
+        color: #fff;
+
+        font-size: 8px;
+        white-space: nowrap;
+
+        &--available {
+            background-color: vars.$color-available;
+        }
+
+        &--unavailable {
+            background-color: vars.$color-unavailable;
+        }
+    }
+    tbody tr:nth-child(even) {
+        background-color: vars.$color-table-row;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 25px;
+
+        a {
+            color: vars.$color-text;
+        }
+    }
+
+    &__delete {
+        color: #cb2d2d !important;
+    }
+}

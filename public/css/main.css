@@ -172,7 +172,7 @@ body {
   background-color: #007A4A;
 }
 .button--outline {
-  background-color: transparent;
+  background-color: #F5F3EF;
   border: 1px solid #00AC66;
   color: #00AC66;
 }
@@ -640,6 +640,215 @@ body {
 }
 .auth-page__login a {
   color: #292929;
+}
+
+.account-page {
+  background-color: #FAF9F7;
+}
+.account-page__container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 70px 0 100px;
+}
+.account-page__title {
+  margin-bottom: 45px;
+  color: #292929;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.account-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.account-profile__identity, .account-profile__information {
+  min-height: 400px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+.account-profile__identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 45px;
+}
+.account-profile__avatar {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.account-profile__avatar-link {
+  margin-top: 8px;
+  color: #A6A6A6;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+}
+.account-profile__separator {
+  width: 240px;
+  height: 1px;
+  margin: 45px 0;
+  background-color: #eee;
+}
+.account-profile__username {
+  margin-bottom: 10px;
+  color: #292929;
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+.account-profile__member {
+  margin-bottom: 25px;
+  color: #A6A6A6;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+}
+.account-profile__library-label {
+  margin-bottom: 8px;
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+}
+.account-profile__library-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+.account-profile__library-count img {
+  width: 12px;
+  height: 12px;
+}
+.account-profile__information {
+  padding: 45px 115px;
+}
+.account-profile__information-title {
+  margin-bottom: 30px;
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.account-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.account-form__group label {
+  color: #A6A6A6;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+}
+.account-form__group input {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  background-color: #edf2f6;
+  border: 0;
+  border-radius: 5px;
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  outline: none;
+}
+.account-form__submit {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 0 30px;
+}
+
+.account-library {
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 20px;
+}
+.account-library__table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+.account-library__table thead {
+  border-bottom: solid #eee 1px;
+}
+.account-library__table th,
+.account-library__table td {
+  padding: 25px 20px;
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: left;
+  vertical-align: middle;
+}
+.account-library__table th {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 8px;
+  font-weight: 600;
+}
+.account-library__table tbody tr:nth-child(even) {
+  background-color: #edf2f6;
+}
+.account-library__table th:first-child,
+.account-library__table td:first-child {
+  padding-left: 70px;
+}
+.account-library__image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+.account-library__description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-height: 1.4;
+}
+.account-library__availability {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 8px;
+  white-space: nowrap;
+}
+.account-library__availability--available {
+  background-color: #6dc5a1;
+}
+.account-library__availability--unavailable {
+  background-color: #c56d6d;
+}
+.account-library tbody tr:nth-child(even) {
+  background-color: #edf2f6;
+}
+.account-library__actions {
+  display: flex;
+  gap: 25px;
+}
+.account-library__actions a {
+  color: #292929;
+}
+.account-library__delete {
+  color: #cb2d2d !important;
 }
 
 /*# sourceMappingURL=main.css.map */

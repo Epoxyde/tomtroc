@@ -45,4 +45,19 @@ class UserManager
 
         return (int) $this->db->lastInsertId();
     }
+
+    public function getUserById(int $id): array|false
+    {
+        $sql = '
+        SELECT id, username, email, avatar, created_at
+        FROM users
+        WHERE id = :id
+    ';
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch();
+    }
 }

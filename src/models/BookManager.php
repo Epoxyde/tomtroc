@@ -73,4 +73,20 @@ class BookManager
 
         return $statement->fetch();
     }
+
+    public function getBooksByUserId(int $userId): array
+    {
+        $sql = '
+        SELECT *
+        FROM books
+        WHERE user_id = :user_id
+        ORDER BY id ASC
+    ';
+
+        $statement = $this->db->prepare($sql);
+        $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetchAll();
     }
+}

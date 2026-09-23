@@ -5,6 +5,7 @@ session_start();
 require_once __DIR__ . '/../src/controllers/HomeController.php';
 require_once __DIR__ . '/../src/controllers/BookController.php';
 require_once __DIR__ . '/../src/controllers/AuthController.php';
+require_once __DIR__ . '/../src/controllers/UserController.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $route = trim($uri, '/');
@@ -38,6 +39,11 @@ switch ($route) {
     case 'logout':
         $controller = new AuthController();
         $controller->logout();
+        break;
+
+    case 'account':
+        $controller = new UserController();
+        $controller->account();
         break;
 
     default:
