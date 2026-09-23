@@ -121,21 +121,31 @@ http://tomtroc.local/
 
 ## Base de données
 
-Le projet utilise une base de données relationnelle MySQL.
+Le projet utilise une base de données relationnelle MySQL
+composée de trois tables :
 
-La structure de la base de données sera documentée ici au fur et à mesure du développement.
+- `users` : comptes et profils des utilisateurs ;
+- `books` : livres proposés à l'échange ;
+- `messages` : messages privés entre utilisateurs,
+  avec suivi de leur lecture.
+
+Les tables sont reliées par des clés étrangères.
+
+Le fichier `tomtroc.sql`, situé à la racine du projet,
+contient la structure et les données de démonstration.
 
 ## Comptes de démonstration
 
-Deux comptes utilisateurs sont disponibles après l'import de la base de données :
+Trois comptes utilisateurs sont disponibles après l'import de la base de données :
 
 | Utilisateur | E-mail | Mot de passe |
 | --- | --- | --- |
 | alexlecture | alexlecture@example.com | password |
-| nathalie | nathalie@example.com | password |
+| nathalire | nathalire@example.com | password |
 | Sas634 | sas634@example.com | password |
 
-Les mots de passe sont stockés de manière sécurisée dans la base de données à l'aide de `password_hash()`.
+Les mots de passe sont stockés sous forme de hachages
+générés avec `password_hash()`.
 
 ## Styles
 
