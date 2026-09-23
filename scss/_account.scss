@@ -137,6 +137,16 @@
     flex-direction: column;
     gap: 20px;
 
+    &__error {
+        margin-bottom: 20px;
+
+        color: vars.$color-unavailable;
+
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
     &__group {
         display: flex;
         flex-direction: column;

@@ -53,6 +53,11 @@ require __DIR__ . '/templates/header.php';
                     Vos informations personnelles
                 </h2>
 
+                <?php if (!empty($error)): ?>
+                    <p class="account-form__error">
+                        <?= htmlspecialchars($error) ?>
+                    </p>
+                <?php endif; ?>
                 <form class="account-form" method="post" action="/account">
                     <div class="account-form__group">
                         <label for="email">Adresse email</label>

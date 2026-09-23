@@ -7,19 +7,56 @@ class UserController
 {
     public function account(): void
     {
-        // Vérifier que l'utilisateur est connecté.
         if (!isset($_SESSION['user_id'])) {
             header('Location: /login');
             exit;
         }
 
-        // Récupérer les informations de l'utilisateur.
+        $userId = (int) $_SESSION['user_id'];
         $userManager = new UserManager();
-        $user = $userManager->getUserById(
-            (int) $_SESSION['user_id']
-        );
 
-        // Gérer le cas où le compte n'existe plus.
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = trim($_POST['username'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+
+            if ($username === '' || $email === '') {
+                $error = 'Le pseudo et l’adresse email sont obligatoires.';
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $error = 'L’adresse email n’est pas valide.';
+            } else {
+                $existingUser = $userManager->getUserByEmail($email);
+
+                if (
+                    $existingUser &&
+                    (int) $existingUser['id'] !== $userId
+                ) {
+                    $error = 'Cette adresse email est déjà utilisée.';
+                } else {
+                    $hashedPassword = null;
+
+                    if ($password !== '') {
+                        $hashedPassword = password_hash(
+                            $password,
+                            PASSWORD_DEFAULT
+                        );
+                    }
+
+                    $userManager->updateUser(
+                        $userId,
+                        $username,
+                        $email,
+                        $hashedPassword
+                    );
+
+                    header('Location: /account');
+                    exit;
+                }
+            }
+        }
+
+        $user = $userManager->getUserById($userId);
+
         if (!$user) {
             $_SESSION = [];
 
@@ -28,9 +65,8 @@ class UserController
         }
 
         $bookManager = new BookManager();
-        $books = $bookManager->getBooksByUserId((int) $user['id']);
+        $books = $bookManager->getBooksByUserId($userId);
 
-        // Afficher la page.
         require __DIR__ . '/../views/account.php';
     }
 }

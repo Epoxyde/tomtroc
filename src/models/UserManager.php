@@ -60,4 +60,40 @@ class UserManager
 
         return $statement->fetch();
     }
+
+    public function updateUser(
+        int $id,
+        string $username,
+        string $email,
+        ?string $password = null
+    ): void {
+        if ($password !== null) {
+            $sql = '
+            UPDATE users
+            SET username = :username,
+                email = :email,
+                password = :password
+            WHERE id = :id
+        ';
+        } else {
+            $sql = '
+            UPDATE users
+            SET username = :username,
+                email = :email
+            WHERE id = :id
+        ';
+        }
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+
+        if ($password !== null) {
+            $statement->bindValue(':password', $password);
+        }
+
+        $statement->execute();
+    }
 }

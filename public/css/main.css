@@ -745,6 +745,13 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+.account-form__error {
+  margin-bottom: 20px;
+  color: #c56d6d;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
 .account-form__group {
   display: flex;
   flex-direction: column;
