@@ -29,3 +29,22 @@ function formatMemberSince(string $createdAt): string
 
     return "Membre depuis aujourd'hui";
 }
+
+/**
+ * Formate la date d'un message selon son ancienneté.
+ */
+function formatMessageDate(string $createdAt): string
+{
+    $date = new DateTime($createdAt);
+    $now = new DateTime();
+
+    if ($date->format('Y-m-d') === $now->format('Y-m-d')) {
+        return $date->format('H:i');
+    }
+
+    if ($date->format('Y') === $now->format('Y')) {
+        return $date->format('d.m H:i');
+    }
+
+    return $date->format('d.m.Y H:i');
+}

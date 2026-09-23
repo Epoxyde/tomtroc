@@ -6,6 +6,7 @@ require_once __DIR__ . '/../src/controllers/HomeController.php';
 require_once __DIR__ . '/../src/controllers/BookController.php';
 require_once __DIR__ . '/../src/controllers/AuthController.php';
 require_once __DIR__ . '/../src/controllers/UserController.php';
+require_once __DIR__ . '/../src/controllers/MessageController.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $route = trim($uri, '/');
@@ -61,6 +62,10 @@ switch ($route) {
         $controller->profile();
         break;
 
+    case 'messages':
+        $controller = new MessageController();
+        $controller->index();
+        break;
 
     default:
         http_response_code(404);

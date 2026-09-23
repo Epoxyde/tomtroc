@@ -1,0 +1,264 @@
+@use "variables" as vars;
+
+.messages-page {
+
+    &__layout {
+        display: grid;
+        grid-template-columns: 307px minmax(0, 1fr);
+
+        width: 100%;
+        max-width: 1140px;
+        min-height: 740px;
+        margin: 0 auto;
+    }
+
+    // Colonne gauche
+    &__sidebar {
+        background-color: vars.$color-background-light;
+    }
+
+    &__title {
+        margin: 60px 35px 35px;
+
+        color: vars.$color-text;
+        font-family: vars.$font-title;
+        font-size: 26px;
+        font-weight: 400;
+    }
+
+    &__conversations {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__conversation {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        min-height: 82px;
+        padding: 14px 33px;
+
+        color: vars.$color-text;
+        text-decoration: none;
+
+        &:hover,
+        &--active {
+            background-color: #fff;
+        }
+    }
+
+    &__conversation-avatar {
+        flex-shrink: 0;
+
+        width: 48px;
+        height: 48px;
+
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__conversation-content {
+        min-width: 0;
+        flex: 1;
+    }
+
+    &__conversation-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+
+        margin-bottom: 7px;
+    }
+
+    &__conversation-name {
+        overflow: hidden;
+
+        font-family: vars.$font-primary;
+        font-size: 14px;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    &__conversation-date {
+        flex-shrink: 0;
+
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 300;
+    }
+
+    &__conversation-preview {
+        overflow: hidden;
+
+        color: vars.$color-text-light;
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 300;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    // Partie droite
+    &__main {
+        display: flex;
+        flex-direction: column;
+
+        min-width: 0;
+        padding: 38px 45px 45px;
+
+        background-color: vars.$color-background;
+    }
+
+    &__recipient {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        a {
+            color: vars.$color-text;
+            font-family: vars.$font-primary;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+    }
+
+    &__recipient-avatar {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    // Historique des messages
+    &__thread {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 25px;
+
+        min-height: 0;
+        padding: 35px 0 65px;
+    }
+
+    &__message {
+        display: flex;
+        flex-direction: column;
+
+        max-width: 65%;
+
+        &--mine {
+            align-self: flex-end;
+            align-items: flex-end;
+
+            .messages-page__message-bubble {
+                background-color: vars.$color-table-row;
+            }
+        }
+
+        &--received {
+            align-self: flex-start;
+            align-items: flex-start;
+
+            .messages-page__message-bubble {
+                background-color: #fff;
+            }
+        }
+    }
+
+    &__message-meta {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+
+        margin-bottom: 8px;
+
+        color: vars.$color-text-light;
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 300;
+    }
+
+    &__message-avatar {
+        width: 24px;
+        height: 24px;
+
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__message-bubble {
+        padding: 12px 18px;
+
+        border-radius: 3px;
+
+        color: vars.$color-text;
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    // Formulaire
+    &__form {
+        margin-top: auto;
+    }
+
+    &__form-fields {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+    }
+
+    &__input {
+        flex: 1;
+        min-width: 0;
+        height: 48px;
+        padding: 0 40px;
+
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 6px;
+
+        color: vars.$color-text;
+        font-family: vars.$font-primary;
+        font-size: 14px;
+        font-weight: 300;
+
+        &::placeholder {
+            color: vars.$color-text-light;
+        }
+    }
+
+    &__submit {
+        flex-shrink: 0;
+
+        width: 132px;
+        height: 48px;
+    }
+
+    &__error {
+        margin-bottom: 12px;
+
+        color: vars.$color-unavailable;
+        font-family: vars.$font-primary;
+        font-size: 12px;
+    }
+
+    &__empty {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+
+        color: vars.$color-text-light;
+        font-family: vars.$font-primary;
+        font-size: 14px;
+    }
+}

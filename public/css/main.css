@@ -740,6 +740,205 @@ body {
   padding-right: 30px;
 }
 
+.messages-page__layout {
+  display: grid;
+  grid-template-columns: 307px minmax(0, 1fr);
+  width: 100%;
+  max-width: 1140px;
+  min-height: 740px;
+  margin: 0 auto;
+}
+.messages-page__sidebar {
+  background-color: #FAF9F7;
+}
+.messages-page__title {
+  margin: 60px 35px 35px;
+  color: #292929;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 400;
+}
+.messages-page__conversations {
+  display: flex;
+  flex-direction: column;
+}
+.messages-page__conversation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 82px;
+  padding: 14px 33px;
+  color: #292929;
+  text-decoration: none;
+}
+.messages-page__conversation:hover, .messages-page__conversation--active {
+  background-color: #fff;
+}
+.messages-page__conversation-avatar {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.messages-page__conversation-content {
+  min-width: 0;
+  flex: 1;
+}
+.messages-page__conversation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.messages-page__conversation-name {
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.messages-page__conversation-date {
+  flex-shrink: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+}
+.messages-page__conversation-preview {
+  overflow: hidden;
+  color: #A6A6A6;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.messages-page__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 38px 45px 45px;
+  background-color: #F5F3EF;
+}
+.messages-page__recipient {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.messages-page__recipient a {
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.messages-page__recipient-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.messages-page__thread {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 25px;
+  min-height: 0;
+  padding: 35px 0 65px;
+}
+.messages-page__message {
+  display: flex;
+  flex-direction: column;
+  max-width: 65%;
+}
+.messages-page__message--mine {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.messages-page__message--mine .messages-page__message-bubble {
+  background-color: #edf2f6;
+}
+.messages-page__message--received {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+.messages-page__message--received .messages-page__message-bubble {
+  background-color: #fff;
+}
+.messages-page__message-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 8px;
+  color: #A6A6A6;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+}
+.messages-page__message-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.messages-page__message-bubble {
+  padding: 12px 18px;
+  border-radius: 3px;
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.messages-page__form {
+  margin-top: auto;
+}
+.messages-page__form-fields {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.messages-page__input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0 40px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  color: #292929;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+}
+.messages-page__input::placeholder {
+  color: #A6A6A6;
+}
+.messages-page__submit {
+  flex-shrink: 0;
+  width: 132px;
+  height: 48px;
+}
+.messages-page__error {
+  margin-bottom: 12px;
+  color: #c56d6d;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+}
+.messages-page__empty {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  color: #A6A6A6;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+}
+
 .auth-page {
   display: flex;
   width: 100%;
