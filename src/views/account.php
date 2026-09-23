@@ -1,10 +1,6 @@
 <?php
 require_once __DIR__ . '/../helpers/format.php';
 
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-
 $title = 'Mon compte';
 require __DIR__ . '/templates/header.php';
 
@@ -86,6 +82,11 @@ require __DIR__ . '/templates/header.php';
                     </p>
                 <?php endif; ?>
                 <form class="account-form" method="post" action="/account">
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+
                     <div class="account-form__group">
                         <label for="email">Adresse email</label>
 

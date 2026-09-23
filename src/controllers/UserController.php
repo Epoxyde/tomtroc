@@ -13,6 +13,24 @@ class UserController
         }
 
         $userId = (int) $_SESSION['user_id'];
+
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $token = $_POST['csrf_token'] ?? '';
+
+            if (
+                !is_string($token) ||
+                !hash_equals($_SESSION['csrf_token'], $token)
+            ) {
+                http_response_code(403);
+                echo 'Formulaire invalide. Veuillez recharger la page et réessayer.';
+                return;
+            }
+        }
+
         $userManager = new UserManager();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
