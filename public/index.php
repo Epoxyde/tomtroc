@@ -46,6 +46,11 @@ switch ($route) {
         $controller->account();
         break;
 
+    case 'book/edit':
+        $controller = new BookController();
+        $controller->edit();
+        break;
+
     default:
         http_response_code(404);
         require __DIR__ . '/../src/views/404.php';

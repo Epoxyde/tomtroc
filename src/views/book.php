@@ -14,7 +14,7 @@ require __DIR__ . '/templates/header.php';
     <div class="book-detail__image-wrapper">
         <img
             class="book-detail__image"
-            src="/images/book/<?= htmlspecialchars($book['image']) ?>"
+            src="/uploads/books/<?= htmlspecialchars($book['image']) ?>"
             alt="<?= htmlspecialchars($book['title']) ?>"
         >
     </div>
@@ -46,7 +46,7 @@ require __DIR__ . '/templates/header.php';
                 <?php if ($book['avatar']): ?>
                     <img
                         class="book-detail__avatar"
-                        src="/images/profil/<?= htmlspecialchars($book['avatar']) ?>"
+                        src="/uploads/avatars/<?= htmlspecialchars($book['avatar']) ?>"
                         alt=""
                     >
                 <?php endif; ?>

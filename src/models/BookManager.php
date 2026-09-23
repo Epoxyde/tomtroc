@@ -89,4 +89,55 @@ class BookManager
 
         return $statement->fetchAll();
     }
+
+    public function updateBook(
+        int $id,
+        int $userId,
+        string $title,
+        string $author,
+        string $description,
+        bool $available
+    ): void {
+        $sql = '
+        UPDATE books
+        SET title = :title,
+            author = :author,
+            description = :description,
+            available = :available
+        WHERE id = :id
+          AND user_id = :user_id
+    ';
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':title', $title);
+        $statement->bindValue(':author', $author);
+        $statement->bindValue(':description', $description);
+        $statement->bindValue(':available', $available, PDO::PARAM_BOOL);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    public function updateBookImage(
+        int $bookId,
+        int $userId,
+        string $image
+    ): void {
+        $sql = '
+        UPDATE books
+        SET image = :image
+        WHERE id = :id
+          AND user_id = :user_id
+    ';
+
+        $statement = $this->db->prepare($sql);
+
+        $statement->bindValue(':image', $image);
+        $statement->bindValue(':id', $bookId, PDO::PARAM_INT);
+        $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
 }

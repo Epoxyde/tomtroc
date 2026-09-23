@@ -40,7 +40,7 @@ require __DIR__ . '/templates/header.php';
                     >
                         <img
                             class="book-card__image"
-                            src="/images/book/<?= htmlspecialchars($book['image']) ?>"
+                            src="/uploads/books/<?= htmlspecialchars($book['image']) ?>"
                             alt="<?= htmlspecialchars($book['title']) ?>"
                         >
 

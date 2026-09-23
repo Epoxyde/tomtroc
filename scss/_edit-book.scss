@@ -1,0 +1,125 @@
+@use "variables" as vars;
+
+.edit-book {
+    background-color: vars.$color-background-light;
+
+    &__container {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 40px 0 100px;
+    }
+
+    &__back {
+        color: vars.$color-text-light;
+        font-family: vars.$font-primary;
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    &__title {
+        margin: 25px 0 45px;
+        color: vars.$color-text;
+        font-family: vars.$font-title;
+        font-size: 26px;
+        font-weight: 400;
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+    }
+
+    &__label {
+        margin-bottom: 10px;
+        color: vars.$color-text-light;
+        font-family: vars.$font-primary;
+        font-size: 12px;
+    }
+
+    &__image {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: bottom;
+    }
+
+    &__image-link {
+        display: block;
+        margin-top: 20px;
+
+        color: vars.$color-text;
+
+        font-family: vars.$font-primary;
+        font-size: 12px;
+        text-align: right;
+        text-decoration: underline;
+
+        cursor: pointer;
+    }
+
+    &__image-input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+
+    &__error {
+        margin-bottom: 20px;
+
+        color: vars.$color-unavailable;
+
+        font-family: vars.$font-primary;
+        font-size: 12px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label {
+            color: vars.$color-text-light;
+            font-family: vars.$font-primary;
+            font-size: 12px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 15px;
+
+            background-color: vars.$color-table-row;
+            border: 0;
+            border-radius: 5px;
+
+            color: vars.$color-text;
+            font-family: vars.$font-primary;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            height: 50px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+    }
+
+    &__submit {
+        width: 100%;
+    }
+}
