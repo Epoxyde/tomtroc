@@ -57,6 +57,11 @@ switch ($route) {
         $controller->account();
         break;
 
+    case 'account/avatar':
+        $controller = new UserController();
+        $controller->updateAvatar();
+        break;
+        
     case 'profile':
         $controller = new UserController();
         $controller->profile();

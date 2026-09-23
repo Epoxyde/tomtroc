@@ -16,16 +16,38 @@ require __DIR__ . '/templates/header.php';
 
         <div class="account-profile">
             <div class="account-profile__identity">
-                <?php if ($user['avatar']): ?>
-                    <img
-                        class="account-profile__avatar"
-                        src="/uploads/avatars/<?= htmlspecialchars($user['avatar']) ?>"
-                        alt="">
-                <?php endif; ?>
+                <form
+                    class="account-profile__avatar-form"
+                    action="/account/avatar"
+                    method="post"
+                    enctype="multipart/form-data">
 
-                <a class="account-profile__avatar-link" href="#">
-                    modifier
-                </a>
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+
+                    <?php if (!empty($user['avatar'])): ?>
+                        <img
+                            class="account-profile__avatar"
+                            src="/uploads/avatars/<?= htmlspecialchars($user['avatar']) ?>"
+                            alt="Photo de profil de <?= htmlspecialchars($user['username']) ?>">
+                    <?php endif; ?>
+
+                    <label
+                        class="account-profile__avatar-link"
+                        for="avatar-input">
+                        modifier
+                    </label>
+
+                    <input
+                        id="avatar-input"
+                        class="account-profile__avatar-input"
+                        type="file"
+                        name="avatar"
+                        accept="image/jpeg,image/png,image/webp"
+                        required>
+                </form>
 
                 <div class="account-profile__separator"></div>
 
@@ -183,5 +205,7 @@ require __DIR__ . '/templates/header.php';
         </div>
     </div>
 </section>
+
+<script src="/js/account-avatar.js" defer></script>
 
 <?php require __DIR__ . '/templates/footer.php'; ?>

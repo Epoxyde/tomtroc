@@ -1066,12 +1066,22 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+.account-profile__avatar-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.account-profile__avatar-input {
+  display: none;
+}
 .account-profile__avatar-link {
   margin-top: 8px;
   color: #A6A6A6;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .account-profile__separator {
   width: 240px;

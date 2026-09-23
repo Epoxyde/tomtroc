@@ -96,4 +96,23 @@ class UserManager
 
         $statement->execute();
     }
+
+    /**
+     * Met à jour la photo de profil d'un utilisateur.
+     */
+    public function updateAvatar(int $userId, string $filename): bool
+    {
+        $sql = '
+        UPDATE users
+        SET avatar = :avatar
+        WHERE id = :user_id
+    ';
+
+        $statement = $this->db->prepare($sql);
+
+        return $statement->execute([
+            'avatar' => $filename,
+            'user_id' => $userId
+        ]);
+    }
 }

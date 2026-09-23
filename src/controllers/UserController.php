@@ -98,4 +98,85 @@ class UserController
 
         require __DIR__ . '/../views/profile.php';
     }
+
+    public function updateAvatar(): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: /account');
+            exit;
+        }
+
+        if (
+            empty($_SESSION['csrf_token']) ||
+            !isset($_POST['csrf_token']) ||
+            !is_string($_POST['csrf_token']) ||
+            !hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])
+        ) {
+            http_response_code(403);
+            exit('Formulaire invalide.');
+        }
+
+        $file = $_FILES['avatar'] ?? null;
+
+        if (!$file || $file['error'] !== UPLOAD_ERR_OK) {
+            header('Location: /account');
+            exit;
+        }
+
+        // Taille maximale : 5 Mo.
+        if ($file['size'] > 5 * 1024 * 1024) {
+            http_response_code(400);
+            exit('La photo ne doit pas dépasser 5 Mo.');
+        }
+
+        // Vérification du véritable type du fichier.
+        $mimeType = (new finfo(FILEINFO_MIME_TYPE))
+            ->file($file['tmp_name']);
+
+        $allowedTypes = [
+            'image/jpeg' => 'jpg',
+            'image/png' => 'png',
+            'image/webp' => 'webp'
+        ];
+
+        if (!isset($allowedTypes[$mimeType])) {
+            http_response_code(400);
+            exit('Format non autorisé. Utilisez JPG, PNG ou WebP.');
+        }
+
+        // Génération d'un nom unique.
+        $filename = bin2hex(random_bytes(16))
+            . '.'
+            . $allowedTypes[$mimeType];
+
+        $destination = __DIR__
+            . '/../../public/uploads/avatars/'
+            . $filename;
+
+        if (!move_uploaded_file($file['tmp_name'], $destination)) {
+            http_response_code(500);
+            exit("Impossible d'enregistrer la photo.");
+        }
+
+        $userManager = new UserManager();
+
+        if (!$userManager->updateAvatar(
+            (int) $_SESSION['user_id'],
+            $filename
+        )) {
+            // Évite de conserver un fichier inutilisé.
+            unlink($destination);
+
+            http_response_code(500);
+            exit("Impossible de mettre à jour le profil.");
+        }
+
+        header('Location: /account');
+        exit;
+    }
 }
