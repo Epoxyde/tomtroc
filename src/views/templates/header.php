@@ -32,17 +32,31 @@
                 </div>
 
                 <div class="header__nav-account">
-                    <a class="header__link" href="/messages">
-                        <img src="/images/icon-messagerie.svg" alt="" aria-hidden="true">
-                        <span>Messagerie</span>
-                    </a>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <a class="header__link" href="/messages">
+                            <img
+                                src="/images/icon-messagerie.svg"
+                                alt=""
+                                aria-hidden="true">
+                            <span>Messagerie</span>
+                        </a>
 
-                    <a class="header__link" href="/account">
-                        <img src="/images/icon-moncompte.svg" alt="" aria-hidden="true">
-                        <span>Mon compte</span>
-                    </a>
+                        <a class="header__link" href="/account">
+                            <img
+                                src="/images/icon-moncompte.svg"
+                                alt=""
+                                aria-hidden="true">
+                            <span>Mon compte</span>
+                        </a>
 
-                    <a class="header__link" href="/login">Connexion</a>
+                        <a class="header__link" href="/logout">
+                            Déconnexion
+                        </a>
+                    <?php else: ?>
+                        <a class="header__link" href="/login">
+                            Connexion
+                        </a>
+                    <?php endif; ?>
                 </div>
 
             </nav>

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once __DIR__ . '/../src/controllers/HomeController.php';
 require_once __DIR__ . '/../src/controllers/BookController.php';
 require_once __DIR__ . '/../src/controllers/AuthController.php';
@@ -31,6 +33,11 @@ switch ($route) {
     case 'login':
         $controller = new AuthController();
         $controller->login();
+        break;
+
+    case 'logout':
+        $controller = new AuthController();
+        $controller->logout();
         break;
 
     default:

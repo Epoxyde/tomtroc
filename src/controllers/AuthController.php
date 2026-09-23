@@ -34,10 +34,7 @@ class AuthController
                         $hashedPassword
                     );
 
-                    if (session_status() === PHP_SESSION_NONE) {
-                        session_start();
-                    }
-
+                    session_regenerate_id(true);
                     $_SESSION['user_id'] = $userId;
 
                     header('Location: /');
@@ -68,11 +65,9 @@ class AuthController
                 if (!$user || !password_verify($password, $user['password'])) {
                     $error = 'Adresse email ou mot de passe incorrect.';
                 } else {
-                    if (session_status() === PHP_SESSION_NONE) {
-                        session_start();
-                    }
 
-                    $_SESSION['user_id'] = $user['id'];
+                    session_regenerate_id(true);
+                    $_SESSION['user_id'] = (int) $user['id'];
 
                     header('Location: /');
                     exit;
@@ -81,5 +76,15 @@ class AuthController
         }
 
         require __DIR__ . '/../views/login.php';
+    }
+
+    public function logout(): void
+    {
+        $_SESSION = [];
+
+        session_regenerate_id(true);
+
+        header('Location: /');
+        exit;
     }
 }
