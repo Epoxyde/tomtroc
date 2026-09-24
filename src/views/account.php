@@ -77,7 +77,7 @@ require __DIR__ . '/templates/header.php';
                 </h2>
 
                 <?php if (!empty($error)): ?>
-                    <p class="account-form__error">
+                    <p class="account-form__error" role="alert">
                         <?= htmlspecialchars($error) ?>
                     </p>
                 <?php endif; ?>

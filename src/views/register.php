@@ -10,7 +10,7 @@ require __DIR__ . '/templates/header.php';
         <div class="auth-page__inner">
             <h1 class="auth-page__title">Inscription</h1>
             <?php if ($error): ?>
-                <p class="auth-form__error">
+                <p class="auth-form__error" role="alert">
                     <?= htmlspecialchars($error) ?>
                 </p>
             <?php endif; ?>
