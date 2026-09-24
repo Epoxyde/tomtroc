@@ -46,25 +46,39 @@ Le fichier `public/index.php` constitue le point d'entrée de l'application. Le 
 
 ## Installation
 
+### Prérequis
+
+- PHP 8.0 minimum (le projet a été testé avec PHP 8.2.6), avec les extensions `pdo_mysql`, `mbstring` et `fileinfo` activées.
+- MySQL ou MariaDB avec prise en charge d'InnoDB et du jeu de caractères `utf8mb4`.
+- Apache avec le module `mod_rewrite` activé et la prise en compte du fichier `public/.htaccess`.
+- Git pour récupérer le projet.
+- Node.js et npm uniquement pour modifier et recompiler les styles SCSS. Le fichier CSS compilé est déjà fourni.
+
 ### 1. Cloner le dépôt
 
 ```bash
-git clone git@github.com:Epoxyde/tomtroc.git
+git clone https://github.com/Epoxyde/tomtroc.git
 cd tomtroc
 ```
 
 ### 2. Créer la base de données
 
-Créer une base de données MySQL destinée à TomTroc.
+Créer une base de données vide destinée à TomTroc, par exemple depuis phpMyAdmin :
 
-Importer ensuite le fichier `tomtroc.sql`, situé à la racine du projet, afin de créer les tables et les données nécessaires au fonctionnement de l'application.
+```sql
+CREATE DATABASE tomtroc CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Sélectionner cette base, puis importer le fichier `tomtroc.sql`, situé à la racine du projet, avec l'onglet **Importer** de phpMyAdmin. Le fichier contient les tables, leurs relations et les données de démonstration, mais ne crée pas la base elle-même.
+
+Utiliser une base vide : l'export contient des instructions `DROP TABLE` qui suppriment les tables du même nom si elles existent.
 
 ### 3. Configurer la connexion à la base de données
 
 Copier le fichier :
 
 ```text
-config/config.example.php
+config/config.exemple.php
 ```
 
 et le renommer :
@@ -81,7 +95,8 @@ Renseigner ensuite dans ce fichier les paramètres correspondant à votre enviro
 return [
     'db' => [
         'host' => 'localhost',
-        'dbname' => '',
+        'port' => '3306',
+        'dbname' => 'tomtroc',
         'user' => '',
         'password' => '',
         'charset' => 'utf8mb4',
@@ -91,6 +106,8 @@ return [
 
 Le fichier `config/config.php` contient les identifiants locaux de connexion à la base de données et n'est donc pas versionné.
 
+Adapter `port` au serveur utilisé : l'export fourni provient d'une instance MariaDB sur le port `3307`, tandis que le fichier d'exemple indique `3306`. Renseigner le nom de la base créée et les identifiants de son utilisateur.
+
 ### 4. Configurer le serveur web
 
 Configurer le serveur web afin que la racine du site (`DocumentRoot`) pointe vers le dossier :
@@ -99,25 +116,45 @@ Configurer le serveur web afin que la racine du site (`DocumentRoot`) pointe ver
 public/
 ```
 
-Par exemple, avec Apache :
+Par exemple, avec Apache sous WampServer (adapter les chemins si nécessaire) :
 
 ```apache
 <VirtualHost *:80>
     ServerName tomtroc.local
-    DocumentRoot "/chemin/vers/tomtroc/public"
+    DocumentRoot "C:/wamp64/www/tomtroc/public"
 
-    <Directory "/chemin/vers/tomtroc/public">
+    <Directory "C:/wamp64/www/tomtroc/public">
+        DirectoryIndex index.php
         AllowOverride All
         Require all granted
     </Directory>
 </VirtualHost>
 ```
 
+Ajouter également la ligne suivante au fichier `C:\Windows\System32\drivers\etc\hosts` avec les droits administrateur, si ce nom n'est pas déjà configuré :
+
+```text
+127.0.0.1 tomtroc.local
+```
+
+Activer `mod_rewrite`, charger la configuration du VirtualHost et redémarrer Apache. Le fichier `public/.htaccess` redirige les routes telles que `/books` et `/account` vers `public/index.php`.
+
 Le site peut ensuite être ouvert à l'adresse configurée dans le VirtualHost, par exemple :
 
 ```text
 http://tomtroc.local/
 ```
+
+Utiliser cette adresse à la racine du site : les liens de l'application commencent par `/` et ne sont pas prévus pour une installation dans un sous-dossier d'URL.
+
+### 5. Vérifier l'installation
+
+- Ouvrir l'accueil et `/books`, puis rechercher un titre présent dans le catalogue.
+- Se connecter avec un compte de démonstration et ouvrir « Mon compte ».
+- Vérifier l'ajout et la modification d'un livre, puis l'envoi et la réception d'un message avec deux comptes.
+- Ouvrir une adresse inexistante pour vérifier l'affichage de la page 404.
+
+PHP doit pouvoir écrire dans `public/uploads/books/` et `public/uploads/avatars/`. Pour accepter les photos de livres jusqu'à 20 Mo, configurer `upload_max_filesize` à au moins `20M` et `post_max_size` à une valeur supérieure, par exemple `25M`, dans le `php.ini` utilisé par Apache, puis redémarrer Apache. Les avatars restent limités à 5 Mo par l'application.
 
 ## Base de données
 
