@@ -94,6 +94,8 @@ require __DIR__ . '/templates/header.php';
                             type="email"
                             id="email"
                             name="email"
+                            required
+                            autocomplete="email"
                             value="<?= htmlspecialchars($user->getEmail()) ?>">
                     </div>
 
@@ -104,7 +106,10 @@ require __DIR__ . '/templates/header.php';
                             type="password"
                             id="password"
                             name="password"
+                            autocomplete="new-password"
+                            aria-describedby="password-help"
                             placeholder="••••••••">
+                        <p id="password-help" class="account-form__help">Laissez ce champ vide pour conserver votre mot de passe.</p>
                     </div>
 
                     <div class="account-form__group">
@@ -114,6 +119,8 @@ require __DIR__ . '/templates/header.php';
                             type="text"
                             id="username"
                             name="username"
+                            required
+                            autocomplete="nickname"
                             value="<?= htmlspecialchars($user->getUsername()) ?>">
                     </div>
 

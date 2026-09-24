@@ -1404,6 +1404,25 @@ body {
   }
 }
 
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 12px 20px;
+  background-color: #fff;
+  color: #292929;
+  transform: translateY(calc(-100% - 20px));
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.book-card__link:focus-visible {
+  outline: 3px solid #292929;
+  outline-offset: -3px;
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -1430,4 +1449,10 @@ select:focus-visible {
 .edit-book__image-section:focus-within .edit-book__image-link {
   outline: 3px solid #292929;
   outline-offset: 3px;
+}
+
+.account-form__help {
+  color: #686868;
+  font-size: 12px;
+  line-height: 1.5;
 }

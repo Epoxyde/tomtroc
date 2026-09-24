@@ -23,6 +23,7 @@ $currentRoute = trim(
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
 
     <header class="header">
         <div class="header__container">
@@ -105,4 +106,4 @@ $currentRoute = trim(
         </div>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">

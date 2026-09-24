@@ -5,10 +5,10 @@ $title = 'Profil de ' . $user->getUsername();
 require __DIR__ . '/templates/header.php';
 ?>
 
-<section class="profile-page">
+<div class="profile-page">
     <div class="profile-page__container">
 
-        <aside class="profile-page__identity">
+        <div class="profile-page__identity">
             <?php if (!empty($user->getAvatar())): ?>
                 <img
                     class="profile-page__avatar"
@@ -52,7 +52,7 @@ require __DIR__ . '/templates/header.php';
                     Écrire un message
                 </a>
             <?php endif; ?>
-        </aside>
+        </div>
 
         <div class="profile-page__library">
             <table class="profile-page__table">
@@ -101,6 +101,6 @@ require __DIR__ . '/templates/header.php';
         </div>
 
     </div>
-</section>
+</div>
 
 <?php require __DIR__ . '/templates/footer.php'; ?>

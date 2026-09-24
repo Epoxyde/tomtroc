@@ -5,11 +5,11 @@ $title = 'Messagerie';
 require __DIR__ . '/templates/header.php';
 ?>
 
-<section class="messages-page">
+<div class="messages-page">
     <div class="messages-page__layout">
 
         <!-- Liste des conversations -->
-        <aside class="messages-page__sidebar">
+        <div class="messages-page__sidebar">
             <h1 class="messages-page__title">
                 Messagerie
             </h1>
@@ -62,7 +62,7 @@ require __DIR__ . '/templates/header.php';
                     </a>
                 <?php endforeach; ?>
             </div>
-        </aside>
+        </div>
 
         <!-- Conversation sélectionnée -->
         <div class="messages-page__main">
@@ -154,6 +154,6 @@ require __DIR__ . '/templates/header.php';
         </div>
 
     </div>
-</section>
+</div>
 
 <?php require __DIR__ . '/templates/footer.php'; ?>

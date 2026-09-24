@@ -23,6 +23,7 @@ require __DIR__ . '/templates/header.php';
                         type="email"
                         id="email"
                         name="email"
+                            autocomplete="username"
                         required
                     >
                 </div>
@@ -33,6 +34,7 @@ require __DIR__ . '/templates/header.php';
                         type="password"
                         id="password"
                         name="password"
+                            autocomplete="current-password"
                         required
                     >
                 </div>

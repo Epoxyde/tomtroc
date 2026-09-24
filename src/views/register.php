@@ -22,6 +22,7 @@ require __DIR__ . '/templates/header.php';
                         type="text"
                         id="username"
                         name="username"
+                            autocomplete="nickname"
                         required>
                 </div>
 
@@ -31,6 +32,7 @@ require __DIR__ . '/templates/header.php';
                         type="email"
                         id="email"
                         name="email"
+                            autocomplete="email"
                         required>
                 </div>
 
@@ -40,6 +42,7 @@ require __DIR__ . '/templates/header.php';
                         type="password"
                         id="password"
                         name="password"
+                            autocomplete="new-password"
                         required>
                 </div>
 
