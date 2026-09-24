@@ -122,7 +122,7 @@ body {
 .header__breadcrumb {
   width: 100%;
   padding: 15px 0;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 10px;
   font-weight: 300;
@@ -176,7 +176,7 @@ body {
   min-height: 63px;
   padding: 0 24px;
   border-radius: 10px;
-  background-color: #00AC66;
+  background-color: #007A4A;
   color: #fff;
   font-family: "Inter", sans-serif;
   font-size: 16px;
@@ -185,15 +185,15 @@ body {
   transition: background-color 0.2s ease;
 }
 .button:hover {
-  background-color: #007A4A;
+  background-color: #00633C;
 }
 .button--outline {
   background-color: #F5F3EF;
-  border: 1px solid #00AC66;
-  color: #00AC66;
+  border: 1px solid #007A4A;
+  color: #007A4A;
 }
 .button--outline:hover {
-  background-color: #00AC66;
+  background-color: #007A4A;
   color: #fff;
 }
 
@@ -208,7 +208,7 @@ body {
   gap: 15px;
 }
 .auth-form__group label {
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -280,7 +280,7 @@ body {
 }
 .hero__credit {
   margin-top: 10px;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -410,7 +410,7 @@ body {
   margin-top: 38px;
 }
 .values__signature span {
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -452,13 +452,13 @@ body {
 }
 .book-card__author {
   margin-bottom: 22px;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
 }
 .book-card__seller {
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 10px;
   font-weight: 300;
@@ -557,7 +557,7 @@ body {
   line-height: 1.2;
 }
 .book-detail__author {
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: 300;
@@ -566,7 +566,7 @@ body {
   width: 27px;
   height: 1px;
   margin: 30px 0;
-  background-color: #A6A6A6;
+  background-color: #686868;
 }
 .book-detail__label {
   margin-bottom: 20px;
@@ -652,7 +652,7 @@ body {
 }
 .profile-page__member {
   margin-bottom: 20px;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -824,7 +824,7 @@ body {
 }
 .messages-page__conversation-preview {
   overflow: hidden;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -889,7 +889,7 @@ body {
   align-items: center;
   gap: 7px;
   margin-bottom: 8px;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -932,7 +932,7 @@ body {
   font-weight: 300;
 }
 .messages-page__input::placeholder {
-  color: #A6A6A6;
+  color: #686868;
 }
 .messages-page__submit {
   flex-shrink: 0;
@@ -950,7 +950,7 @@ body {
   flex: 1;
   align-items: center;
   justify-content: center;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 14px;
 }
@@ -1089,7 +1089,7 @@ body {
 }
 .account-profile__avatar-link {
   margin-top: 8px;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -1111,7 +1111,7 @@ body {
 }
 .account-profile__member {
   margin-bottom: 25px;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -1165,7 +1165,7 @@ body {
   gap: 8px;
 }
 .account-form__group label {
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 300;
@@ -1232,7 +1232,7 @@ body {
   padding: 40px 0 100px;
 }
 .edit-book__back {
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 14px;
   text-decoration: none;
@@ -1251,7 +1251,7 @@ body {
 }
 .edit-book__label {
   margin-bottom: 10px;
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
 }
@@ -1296,7 +1296,7 @@ body {
   gap: 10px;
 }
 .edit-book__group label {
-  color: #A6A6A6;
+  color: #686868;
   font-family: "Inter", sans-serif;
   font-size: 12px;
 }
