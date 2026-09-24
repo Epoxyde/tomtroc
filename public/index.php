@@ -77,6 +77,14 @@ switch ($route) {
         $controller->index();
         break;
 
+    case 'mentions-legales':
+        (new Controller())->render('legal');
+        break;
+
+    case 'politique-de-confidentialite':
+        (new Controller())->render('privacy');
+        break;
+
     default:
         http_response_code(404);
         (new Controller())->render('404');

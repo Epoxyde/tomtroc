@@ -1,0 +1,23 @@
+@use 'variables' as vars;
+
+.text-page {
+    max-width: vars.$container-width;
+    margin: 0 auto;
+    padding: 60px 0;
+
+    h1 {
+        margin-bottom: 24px;
+        font-family: vars.$font-title;
+        font-size: 32px;
+        font-weight: 400;
+    }
+
+    p {
+        margin-bottom: 24px;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 1180px) {
+        padding: 40px 20px;
+    }
+}

@@ -1380,4 +1380,23 @@ body {
   text-decoration: underline;
 }
 
-/*# sourceMappingURL=main.css.map */
+.text-page {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+.text-page h1 {
+  margin-bottom: 24px;
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: 400;
+}
+.text-page p {
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+@media (max-width: 1180px) {
+  .text-page {
+    padding: 40px 20px;
+  }
+}
