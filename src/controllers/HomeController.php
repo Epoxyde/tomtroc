@@ -1,14 +1,15 @@
 <?php
 
+require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../models/BookManager.php';
 
-class HomeController
+class HomeController extends Controller
 {
     public function index(): void
     {
         $bookManager = new BookManager();
         $latestBooks = $bookManager->getLatestBooks(4);
 
-        require __DIR__ . '/../views/home.php';
+        $this->render('home', ['latestBooks' => $latestBooks]);
     }
 }

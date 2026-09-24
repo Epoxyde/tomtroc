@@ -1,8 +1,9 @@
 <?php
 
+require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../models/BookManager.php';
 
-class BookController
+class BookController extends Controller
 {
     public function index(): void
     {
@@ -11,7 +12,7 @@ class BookController
         $bookManager = new BookManager();
         $books = $bookManager->getAvailableBooks($search);
 
-        require __DIR__ . '/../views/books.php';
+        $this->render('books', ['books' => $books, 'search' => $search]);
     }
 
     public function show(): void
@@ -20,7 +21,7 @@ class BookController
 
         if (!$id) {
             http_response_code(404);
-            require __DIR__ . '/../views/404.php';
+            $this->render('404');
             return;
         }
 
@@ -29,11 +30,11 @@ class BookController
 
         if (!$book) {
             http_response_code(404);
-            require __DIR__ . '/../views/404.php';
+            $this->render('404');
             return;
         }
 
-        require __DIR__ . '/../views/book.php';
+        $this->render('book', ['book' => $book]);
     }
 
     public function edit(): void
@@ -53,7 +54,7 @@ class BookController
         // Vérifier que l'identifiant du livre est valide.
         if (!$bookId) {
             http_response_code(404);
-            require __DIR__ . '/../views/404.php';
+            $this->render('404');
             return;
         }
 
@@ -63,7 +64,7 @@ class BookController
         // Vérifier que le livre existe.
         if (!$book) {
             http_response_code(404);
-            require __DIR__ . '/../views/404.php';
+            $this->render('404');
             return;
         }
 
@@ -147,7 +148,7 @@ class BookController
             }
         }
 
-        require __DIR__ . '/../views/editBook.php';
+        $this->render('editBook', ['book' => $book, 'error' => $error ?? null]);
     }
 
     private function uploadBookImage(array $file): string
@@ -248,7 +249,7 @@ class BookController
 
         if (!$deleted) {
             http_response_code(404);
-            require __DIR__ . '/../views/404.php';
+            $this->render('404');
             return;
         }
 
@@ -361,6 +362,6 @@ class BookController
             }
         }
 
-        require __DIR__ . '/../views/addBook.php';
+        $this->render('addBook', ['book' => $book, 'error' => $error ?? null]);
     }
 }

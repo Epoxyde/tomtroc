@@ -1,8 +1,9 @@
 <?php
 
+require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../models/UserManager.php';
 
-class AuthController
+class AuthController extends Controller
 {
     public function register(): void
     {
@@ -43,7 +44,7 @@ class AuthController
             }
         }
 
-        require __DIR__ . '/../views/register.php';
+        $this->render('register', ['error' => $error]);
     }
 
     public function login(): void
@@ -75,7 +76,7 @@ class AuthController
             }
         }
 
-        require __DIR__ . '/../views/login.php';
+        $this->render('login', ['error' => $error]);
     }
 
     public function logout(): void

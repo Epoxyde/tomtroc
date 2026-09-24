@@ -79,6 +79,6 @@ switch ($route) {
 
     default:
         http_response_code(404);
-        require __DIR__ . '/../src/views/404.php';
+        (new Controller())->render('404');
         break;
 }

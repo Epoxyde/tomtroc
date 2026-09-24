@@ -1,9 +1,10 @@
 <?php
 
+require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../models/UserManager.php';
 require_once __DIR__ . '/../models/BookManager.php';
 
-class UserController
+class UserController extends Controller
 {
     public function account(): void
     {
@@ -85,7 +86,7 @@ class UserController
         $bookManager = new BookManager();
         $books = $bookManager->getBooksByUserId($userId);
 
-        require __DIR__ . '/../views/account.php';
+        $this->render('account', ['user' => $user, 'books' => $books, 'error' => $error ?? null]);
     }
 
     public function profile(): void
@@ -98,7 +99,7 @@ class UserController
 
         if (!$userId || $userId < 1) {
             http_response_code(404);
-            require __DIR__ . '/../views/404.php';
+            $this->render('404');
             return;
         }
 
@@ -107,14 +108,14 @@ class UserController
 
         if (!$user) {
             http_response_code(404);
-            require __DIR__ . '/../views/404.php';
+            $this->render('404');
             return;
         }
 
         $bookManager = new BookManager();
         $books = $bookManager->getAvailableBooksByUserId($userId);
 
-        require __DIR__ . '/../views/profile.php';
+        $this->render('profile', ['user' => $user, 'books' => $books]);
     }
 
     public function updateAvatar(): void

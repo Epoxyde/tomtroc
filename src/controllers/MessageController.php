@@ -1,9 +1,10 @@
 <?php
 
+require_once __DIR__ . '/Controller.php';
 require_once __DIR__ . '/../models/MessageManager.php';
 require_once __DIR__ . '/../models/UserManager.php';
 
-class MessageController
+class MessageController extends Controller
 {
     public function index(): void
     {
@@ -38,7 +39,7 @@ class MessageController
 
             if (!$correspondent) {
                 http_response_code(404);
-                require __DIR__ . '/../views/404.php';
+                $this->render('404');
                 return;
             }
 
@@ -84,6 +85,6 @@ class MessageController
 
         $conversations = $messageManager->getConversations($userId);
 
-        require __DIR__ . '/../views/messages.php';
+        $this->render('messages', compact('userId', 'correspondent', 'messages', 'conversations', 'error'));
     }
 }
