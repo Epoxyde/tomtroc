@@ -833,7 +833,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 38px 45px 45px;
+  padding: 38px 45px 140px;
   background-color: #F5F3EF;
 }
 .messages-page__recipient {
@@ -935,6 +935,7 @@ body {
 .messages-page__submit {
   flex-shrink: 0;
   width: 132px;
+  min-height: 48px;
   height: 48px;
 }
 .messages-page__error {
