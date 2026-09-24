@@ -27,8 +27,11 @@
 
     &__content {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 100px;
+        grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+        gap: 120px;
+        padding: 60px 50px;
+        background-color: #fff;
+        border-radius: 20px;
     }
 
     &__label {
@@ -115,11 +118,13 @@
         }
 
         textarea {
+            min-height: 356px;
             resize: vertical;
         }
     }
 
     &__submit {
-        width: 100%;
+        width: 322px;
+        max-width: 100%;
     }
 }

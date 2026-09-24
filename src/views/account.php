@@ -26,7 +26,7 @@ require __DIR__ . '/templates/header.php';
                     <?php if (!empty($user->getAvatar())): ?>
                         <img
                             class="account-profile__avatar"
-                            src="/uploads/avatars/<?= htmlspecialchars($user->getAvatar()) ?>"
+                            src="/uploads/avatars/<?= htmlspecialchars(rawurlencode($user->getAvatar())) ?>"
                             alt="Photo de profil de <?= htmlspecialchars($user->getUsername()) ?>">
                     <?php endif; ?>
 
@@ -154,7 +154,7 @@ require __DIR__ . '/templates/header.php';
                                 <?php if ($book->getImage()): ?>
                                     <img
                                         class="library-table__image"
-                                        src="/uploads/books/<?= htmlspecialchars($book->getImage()) ?>"
+                                        src="/uploads/books/<?= htmlspecialchars(rawurlencode($book->getImage())) ?>"
                                         alt="<?= htmlspecialchars($book->getTitle()) ?>">
                                 <?php endif; ?>
                             </td>

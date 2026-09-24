@@ -759,7 +759,7 @@ body {
   grid-template-columns: 307px minmax(0, 1fr);
   width: 100%;
   max-width: 1140px;
-  min-height: 740px;
+  min-height: 900px;
   margin: 0 auto;
 }
 .messages-page__sidebar {
@@ -1243,8 +1243,11 @@ body {
 }
 .edit-book__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  gap: 120px;
+  padding: 60px 50px;
+  background-color: #fff;
+  border-radius: 20px;
 }
 .edit-book__label {
   margin-bottom: 10px;
@@ -1314,10 +1317,12 @@ body {
   height: 50px;
 }
 .edit-book__group textarea {
+  min-height: 356px;
   resize: vertical;
 }
 .edit-book__submit {
-  width: 100%;
+  width: 322px;
+  max-width: 100%;
 }
 
 .library-table {

@@ -38,18 +38,18 @@ require __DIR__ . '/templates/header.php';
                     form="add-book-form">
             </div>
 
-            <?php if (!empty($error)): ?>
-                <p class="edit-book__error" role="alert">
-                    <?= htmlspecialchars($error) ?>
-                </p>
-            <?php endif; ?>
-
             <form
                 id="add-book-form"
                 class="edit-book__form"
                 action="/book/add"
                 method="post"
                 enctype="multipart/form-data">
+
+                <?php if (!empty($error)): ?>
+                    <p class="edit-book__error" role="alert">
+                        <?= htmlspecialchars($error) ?>
+                    </p>
+                <?php endif; ?>
 
                 <input
                     type="hidden"

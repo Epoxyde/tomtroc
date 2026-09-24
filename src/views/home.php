@@ -51,7 +51,7 @@ require __DIR__ . '/templates/header.php';
                     >
                         <img
                             class="book-card__image"
-                            src="<?= $book->getImage() ? '/uploads/books/' . htmlspecialchars($book->getImage()) : '/images/book-placeholder.png.png' ?>"
+                            src="<?= $book->getImage() ? '/uploads/books/' . htmlspecialchars(rawurlencode($book->getImage())) : '/images/book-placeholder.png.png' ?>"
                             alt="<?= htmlspecialchars($book->getTitle()) ?>"
                         >
 

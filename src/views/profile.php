@@ -12,7 +12,7 @@ require __DIR__ . '/templates/header.php';
             <?php if (!empty($user->getAvatar())): ?>
                 <img
                     class="profile-page__avatar"
-                    src="/uploads/avatars/<?= htmlspecialchars($user->getAvatar()) ?>"
+                    src="/uploads/avatars/<?= htmlspecialchars(rawurlencode($user->getAvatar())) ?>"
                     alt="Photo de profil de <?= htmlspecialchars($user->getUsername()) ?>">
             <?php endif; ?>
 
@@ -73,7 +73,7 @@ require __DIR__ . '/templates/header.php';
                                     <a href="/book?id=<?= (int) $book->getId() ?>">
                                         <img
                                             class="profile-page__book-image"
-                                            src="/uploads/books/<?= htmlspecialchars($book->getImage()) ?>"
+                                            src="/uploads/books/<?= htmlspecialchars(rawurlencode($book->getImage())) ?>"
                                             alt="<?= htmlspecialchars($book->getTitle()) ?>">
                                     </a>
                                 <?php endif; ?>

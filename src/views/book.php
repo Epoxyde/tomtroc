@@ -14,7 +14,7 @@ require __DIR__ . '/templates/header.php';
     <div class="book-detail__image-wrapper">
         <img
             class="book-detail__image"
-            src="<?= $book->getImage() ? '/uploads/books/' . htmlspecialchars($book->getImage()) : '/images/book-placeholder.png.png' ?>"
+            src="<?= $book->getImage() ? '/uploads/books/' . htmlspecialchars(rawurlencode($book->getImage())) : '/images/book-placeholder.png.png' ?>"
             alt="<?= htmlspecialchars($book->getTitle()) ?>">
     </div>
 
@@ -44,7 +44,7 @@ require __DIR__ . '/templates/header.php';
                 <?php if (!empty($book->getOwnerAvatar())): ?>
                     <img
                         class="book-detail__avatar"
-                        src="/uploads/avatars/<?= htmlspecialchars($book->getOwnerAvatar()) ?>"
+                        src="/uploads/avatars/<?= htmlspecialchars(rawurlencode($book->getOwnerAvatar())) ?>"
                         alt="">
                 <?php endif; ?>
 

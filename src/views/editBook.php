@@ -23,7 +23,7 @@ require __DIR__ . '/templates/header.php';
                     id="book-image-preview"
                     class="edit-book__image"
                     src="<?= !empty($book->getImage())
-                                ? '/uploads/books/' . htmlspecialchars($book->getImage())
+                                ? '/uploads/books/' . htmlspecialchars(rawurlencode($book->getImage()))
                                 : '/images/book-placeholder.png.png' ?>"
                     alt="<?= htmlspecialchars($book->getTitle()) ?>">
 
@@ -40,18 +40,18 @@ require __DIR__ . '/templates/header.php';
                     form="edit-book-form">
             </div>
 
-            <?php if (!empty($error)): ?>
-                <p class="edit-book__error" role="alert">
-                    <?= htmlspecialchars($error) ?>
-                </p>
-            <?php endif; ?>
-
             <form
                 id="edit-book-form"
                 class="edit-book__form"
                 action="/book/edit?id=<?= (int) $book->getId() ?>"
                 method="post"
                 enctype="multipart/form-data">
+
+                <?php if (!empty($error)): ?>
+                    <p class="edit-book__error" role="alert">
+                        <?= htmlspecialchars($error) ?>
+                    </p>
+                <?php endif; ?>
 
                 <input
                     type="hidden"

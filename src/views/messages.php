@@ -30,7 +30,7 @@ require __DIR__ . '/templates/header.php';
                         <?php if (!empty($conversation['avatar'])): ?>
                             <img
                                 class="messages-page__conversation-avatar"
-                                src="/uploads/avatars/<?= htmlspecialchars($conversation['avatar']) ?>"
+                                src="/uploads/avatars/<?= htmlspecialchars(rawurlencode($conversation['avatar'])) ?>"
                                 alt="">
                         <?php endif; ?>
 
@@ -72,7 +72,7 @@ require __DIR__ . '/templates/header.php';
                     <?php if (!empty($correspondent->getAvatar())): ?>
                         <img
                             class="messages-page__recipient-avatar"
-                            src="/uploads/avatars/<?= htmlspecialchars($correspondent->getAvatar()) ?>"
+                            src="/uploads/avatars/<?= htmlspecialchars(rawurlencode($correspondent->getAvatar())) ?>"
                             alt="">
                     <?php endif; ?>
 
@@ -94,7 +94,7 @@ require __DIR__ . '/templates/header.php';
                                 <?php if (!$isMine && !empty($correspondent->getAvatar())): ?>
                                     <img
                                         class="messages-page__message-avatar"
-                                        src="/uploads/avatars/<?= htmlspecialchars($correspondent->getAvatar()) ?>"
+                                        src="/uploads/avatars/<?= htmlspecialchars(rawurlencode($correspondent->getAvatar())) ?>"
                                         alt="">
                                 <?php endif; ?>
 
