@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : mer. 23 sep. 2026 à 14:49
+-- Généré le : ven. 25 sep. 2026 à 07:16
 -- Version du serveur : 10.3.9-MariaDB
 -- Version de PHP : 8.2.6
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `fk_books_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `books`
@@ -61,10 +61,7 @@ INSERT INTO `books` (`id`, `user_id`, `title`, `author`, `description`, `image`,
 (13, 1, 'The Subtle Art Of...', 'Mark Manson', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'The Subtle Art Of....jpg', 1, '2026-09-22 09:48:36'),
 (14, 2, 'Narnia', 'C.S. Lewis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'Narnia.jpg', 1, '2026-09-22 09:48:36'),
 (15, 1, 'Company Of One', 'Paul Jarvis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'Company Of One.jpg', 1, '2026-09-22 09:48:36'),
-(16, 2, 'The Two Towers', 'J.R.R Tolkien', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'The Two Towers.jpg', 1, '2026-09-22 09:48:36'),
-(18, 1, 'TEST - Livre à supprimer 2', 'Auteur Test', 'Deuxième livre créé pour tester la suppression.', '83769b63c9681d26fe4cc9d968ab770e.jpg', 1, '2026-09-23 11:08:20'),
-(19, 1, 'TEST - Livre à supprimer 3', 'Auteur Test', 'Troisième livre créé pour tester la suppression.', 'cfa5280d2aa70e0fba02369c527a327a.jpg', 0, '2026-09-23 11:08:20'),
-(20, 2, 'testbook', 'testauteur', 'lorem ipsum', 'f351746b5a0cd4791752d0b6025f3840.png', 0, '2026-09-23 16:44:21');
+(16, 2, 'The Two Towers', 'J.R.R Tolkien', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'The Two Towers.jpg', 1, '2026-09-22 09:48:36');
 
 -- --------------------------------------------------------
 
@@ -83,21 +80,21 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`),
   KEY `fk_messages_sender` (`sender_id`),
   KEY `fk_messages_recipient` (`recipient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `messages`
 --
 
 INSERT INTO `messages` (`id`, `sender_id`, `recipient_id`, `content`, `created_at`, `read_at`) VALUES
-(1, 3, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2026-09-20 09:12:00', NULL),
+(1, 3, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2026-09-20 09:12:00', '2026-09-24 14:21:19'),
 (2, 1, 3, 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '2026-09-20 09:18:00', '2026-09-23 16:25:19'),
-(3, 3, 1, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.', '2026-09-20 09:24:00', NULL),
+(3, 3, 1, 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.', '2026-09-20 09:24:00', '2026-09-24 14:21:19'),
 (4, 1, 3, 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.', '2026-09-20 09:31:00', '2026-09-23 16:25:19'),
-(5, 3, 1, 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2026-09-20 09:42:00', NULL),
-(6, 2, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2026-09-21 10:05:00', NULL),
-(7, 1, 2, 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.', '2026-09-21 10:14:00', NULL),
-(8, 2, 1, 'Donec ullamcorper nulla non metus auctor fringilla.', '2026-09-21 10:27:00', NULL),
+(5, 3, 1, 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2026-09-20 09:42:00', '2026-09-24 14:21:19'),
+(6, 2, 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2026-09-21 10:05:00', '2026-09-24 08:32:18'),
+(7, 1, 2, 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.', '2026-09-21 10:14:00', '2026-09-23 16:58:42'),
+(8, 2, 1, 'Donec ullamcorper nulla non metus auctor fringilla.', '2026-09-21 10:27:00', '2026-09-24 08:32:18'),
 (9, 1, 3, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2026-09-23 16:01:59', '2026-09-23 16:25:19');
 
 -- --------------------------------------------------------
@@ -116,15 +113,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `avatar`, `created_at`) VALUES
-(1, 'alexlecture', 'alexlecture@example.com', '$2y$10$vfinAb5VkbY92xkaqPxQCeFYR6ubq25BNwpVeeKZNZHmEblaKaQxG', 'c6450830cbe5a52c13f43f1fe9b9681f.png', '2026-09-22 09:47:45'),
-(2, 'nathalire', 'nathalire@example.com', '$2y$10$pLUpOYGp0C6jQZWQQbAi5O12/3jRjt8IZaxQuQiRXhYDKCM7ynHVS', 'c8295138409d7c8a97152169906bb1b4.png', '2026-09-22 09:47:45'),
+(1, 'alexlecture', 'alexlecture@example.com', '$2y$10$vfinAb5VkbY92xkaqPxQCeFYR6ubq25BNwpVeeKZNZHmEblaKaQxG', '70d9cc0012dee5d05c7938690d9a3240.png', '2026-09-22 09:47:45'),
+(2, 'nathalire', 'nathalire@example.com', '$2y$10$pLUpOYGp0C6jQZWQQbAi5O12/3jRjt8IZaxQuQiRXhYDKCM7ynHVS', '12ecb35273f474317faf2fbd1f2b2920.png', '2026-09-22 09:47:45'),
 (3, 'Sas634', 'sas634@example.com', '$2y$10$/W6PAH7LWzD7CXjYFiDiHOtN8AvyX/b7K9rcyG2fP7tky3w6zGDQy', 'ee884a34087b973082afe39fbaa5db1a.png', '2026-09-22 10:25:17');
 
 --
