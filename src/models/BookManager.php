@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/Database.php';
 require_once __DIR__ . '/Book.php';
+require_once __DIR__ . '/UploadedImage.php';
 
 class BookManager
 {
@@ -210,6 +211,8 @@ class BookManager
         int $userId,
         string $image
     ): void {
+        $book = $this->getBookById($bookId);
+
         $sql = '
         UPDATE books
         SET image = :image
@@ -224,10 +227,16 @@ class BookManager
         $statement->bindValue(':user_id', $userId, PDO::PARAM_INT);
 
         $statement->execute();
+
+        if ($statement->rowCount() > 0 && $book !== false) {
+            UploadedImage::removeIfUnused($this->db, 'books', $book->getImage());
+        }
     }
 
     public function deleteBook(int $bookId, int $userId): bool
     {
+        $book = $this->getBookById($bookId);
+
         $sql = '
         DELETE FROM books
         WHERE id = :id
@@ -241,6 +250,12 @@ class BookManager
 
         $statement->execute();
 
-        return $statement->rowCount() > 0;
+        $deleted = $statement->rowCount() > 0;
+
+        if ($deleted && $book !== false) {
+            UploadedImage::removeIfUnused($this->db, 'books', $book->getImage());
+        }
+
+        return $deleted;
     }
 }

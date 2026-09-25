@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/Database.php';
 require_once __DIR__ . '/User.php';
+require_once __DIR__ . '/UploadedImage.php';
 
 class UserManager
 {
@@ -107,6 +108,8 @@ class UserManager
      */
     public function updateAvatar(int $userId, string $filename): bool
     {
+        $user = $this->getUserById($userId);
+
         $sql = '
         UPDATE users
         SET avatar = :avatar
@@ -115,9 +118,17 @@ class UserManager
 
         $statement = $this->db->prepare($sql);
 
-        return $statement->execute([
+        $statement->execute([
             'avatar' => $filename,
             'user_id' => $userId
         ]);
+
+        $updated = $statement->rowCount() > 0;
+
+        if ($updated && $user !== false) {
+            UploadedImage::removeIfUnused($this->db, 'avatars', $user->getAvatar());
+        }
+
+        return $updated || ($user !== false && $user->getAvatar() === $filename);
     }
 }
